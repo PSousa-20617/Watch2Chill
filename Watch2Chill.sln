@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watch2Chill", "Watch2Chill\Watch2Chill.csproj", "{76DD16B1-F80B-4635-BEAE-361220F628AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76DD16B1-F80B-4635-BEAE-361220F628AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76DD16B1-F80B-4635-BEAE-361220F628AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76DD16B1-F80B-4635-BEAE-361220F628AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76DD16B1-F80B-4635-BEAE-361220F628AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2C80027-A87B-4DFE-AC18-AAAE23CD7FD6}
+	EndGlobalSection
+EndGlobal
