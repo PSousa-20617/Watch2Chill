@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Watch2Chill.Models
             ListaDeEpisodios = new HashSet<Episodios>();
 
     }
+        [Key]
         public int Num { get; set; }
 
         public int N_episódios { get; set; }
