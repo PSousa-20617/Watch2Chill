@@ -8,6 +8,10 @@ namespace Watch2Chill.Models
 {
     public class Utilizadores
     {
+        public Utilizadores()
+        {
+            ListaDeVideos = new HashSet<UtilizadoresVideos>();
+        }
         /// <summary>
         /// Atributo único para cada utilizador. Este atributo identifica um dado utilizador com um Id específico
         /// </summary>
@@ -29,8 +33,6 @@ namespace Watch2Chill.Models
         [Required(ErrorMessage = "O Email de preenchimento obrigatório")]
         [StringLength(150, ErrorMessage = "O {0} não pode ter mais de {1} caracteres.")]
         [EmailAddress(ErrorMessage = "o {0} introduzido não é válido")]
-        [RegularExpression(@"\A(?:[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
-        ErrorMessage = "Por favor, insira o endereço de email correto")]
         public string Email { get; set; }
 
         
@@ -40,6 +42,7 @@ namespace Watch2Chill.Models
         [Required(ErrorMessage = "A Morada é de preenchimento obrigatório")]
         public string Morada { get; set; }
 
+        public string CodPostal { get; set; }
         /// <summary>
         /// Identifica o sexo do Utilizador "M/F"
         /// </summary>
@@ -49,12 +52,9 @@ namespace Watch2Chill.Models
         /// Atributo de preenchimento obrigatório. A idade deve ser igual ou superior a 18 anos, para efeito de pagamento do serviço.
         /// </summary>
         [Required(ErrorMessage = "A Data de Nascimento é de preenchimento obrigatório")]
-        public DateTime Data_nascimento{ get; set; }
+        public DateTime DataNascimento{ get; set; }
 
 
-        /// <summary>
-        /// Identifica o tipo de utilizador. Utilizador anónimo, utilizador registado e administrador 
-        /// </summary>
-        public string Tipo { get; set; }
+        public ICollection<UtilizadoresVideos> ListaDeVideos { get; set; }
     }
 }

@@ -14,19 +14,22 @@ namespace Watch2Chill.Models
         public Videos()
         {
             ListaDeTemporadas = new HashSet<Temporadas>();
+            ListaDeUtilizadores = new HashSet<UtilizadoresVideos>();
 
         }
         /// <summary>
         /// Id do filme ou série. 
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        public int IdVideo { get; set; }
 
 
         /// <summary>
         /// Nome do filme/série
         /// </summary>
         public string Nome { get; set; }
+
+        public string Trailer { get; set; }
 
 
         /// <summary>
@@ -38,7 +41,7 @@ namespace Watch2Chill.Models
         /// <summary>
         /// Ano de lançamento do Filme ou Série
         /// </summary>
-        public DateTime Ano { get; set; }
+        public int Ano { get; set; }
 
 
         /// <summary>
@@ -61,16 +64,24 @@ namespace Watch2Chill.Models
 
 
         /// <summary>
-        /// Número de temporadas. Se o valor deste atributo for 0, então trata-se de um Filme, caso contrário, trata-se de uma série
+        /// Fotografia correspondente ao filme ou série
         /// </summary>
-        public int N_temporadas { get; set; }
+        public string Foto { get; set; }
+
+        /// <summary>
+        /// Ficheiro mp4 do filme
+        /// </summary>
+        public string Filme { get; set; }
 
 
         /// <summary>
-        /// Numero de episódios de uma série, numa determinada temporada
+        /// Número de temporadas. Se o valor deste atributo for 0, então trata-se de um Filme, caso contrário, trata-se de uma série
         /// </summary>
-        public int N_episodios { get; set; }
+        public int NTemporadas { get; set; }
+
 
         public ICollection<Temporadas> ListaDeTemporadas { get; set; }
+
+        public ICollection<UtilizadoresVideos> ListaDeUtilizadores { get; set; }
     }
 }
