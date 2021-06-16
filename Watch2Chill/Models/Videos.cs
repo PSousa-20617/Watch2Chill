@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -79,9 +80,10 @@ namespace Watch2Chill.Models
         /// </summary>
         public int NTemporadas { get; set; }
 
-
+        [NotMapped]
         public ICollection<Temporadas> ListaDeTemporadas { get; set; }
 
+        [NotMapped]
         public ICollection<UtilizadoresVideos> ListaDeUtilizadores { get; set; }
     }
 }

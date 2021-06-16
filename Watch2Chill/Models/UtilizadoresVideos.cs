@@ -9,6 +9,8 @@ namespace Watch2Chill.Models
 {
     public class UtilizadoresVideos
     {
+        [Key]
+        public int Key { get; set; }
         /// <summary>
         /// Atributo que identifica o atributo Id da classe Utilizadores.
         /// </summary>
