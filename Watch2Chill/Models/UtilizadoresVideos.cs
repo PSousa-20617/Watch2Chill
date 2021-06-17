@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Watch2Chill.Models
 {
-    public class Utilizadores_videos
+    public class UtilizadoresVideos
     {
         /// <summary>
         /// Atributo que identifica o atributo Id da classe Utilizadores.
