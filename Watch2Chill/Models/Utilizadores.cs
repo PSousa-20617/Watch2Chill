@@ -55,7 +55,7 @@ namespace Watch2Chill.Models
         [Required(ErrorMessage = "A Data de Nascimento é de preenchimento obrigatório")]
         public DateTime DataNascimento{ get; set; }
 
-        [NotMapped]
+        
         public ICollection<UtilizadoresVideos> ListaDeVideos { get; set; }
     }
 }

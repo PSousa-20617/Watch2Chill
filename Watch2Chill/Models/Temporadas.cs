@@ -44,7 +44,7 @@ namespace Watch2Chill.Models
         public int IdVideosFK { get; set; }
         public Videos Id { get; set; }
 
-        [NotMapped]
+       
         /// <summary>
         /// Coleção lista de episodios de uma dada temporada
         /// </summary>

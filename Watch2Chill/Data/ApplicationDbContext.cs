@@ -28,9 +28,9 @@ namespace Watch2Chill.Data
             );
 
             modelBuilder.Entity<UtilizadoresVideos>().HasData(
-               new UtilizadoresVideos { Key = 1, Id_Utilizadores = 2, IdVideos = 1 },
-               new UtilizadoresVideos { Key = 2, Id_Utilizadores = 3, IdVideos = 2 },
-               new UtilizadoresVideos { Key = 3, Id_Utilizadores = 4, IdVideos = 3 }
+               new UtilizadoresVideos { Id = 1, IdUtilizadorFK = 2, IdVideoFK = 1 },
+               new UtilizadoresVideos { Id = 2, IdUtilizadorFK = 3, IdVideoFK = 2 },
+               new UtilizadoresVideos { Id = 3, IdUtilizadorFK = 4, IdVideoFK = 3 }
             );
 
             modelBuilder.Entity<Videos>().HasData(
@@ -75,7 +75,7 @@ namespace Watch2Chill.Data
         }
 
         public DbSet<Utilizadores> Utilizadores { get; set; }
-        public DbSet<UtilizadoresVideos> Utilizadores_videos { get; set; }
+        public DbSet<UtilizadoresVideos> UtilizadoresVideos { get; set; }
         public DbSet<Videos> Videos { get; set; }
         public DbSet<Temporadas> Temporadas { get; set; }
         public DbSet<Episodios> Episodios { get; set; }

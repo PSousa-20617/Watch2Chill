@@ -80,10 +80,9 @@ namespace Watch2Chill.Models
         /// </summary>
         public int NTemporadas { get; set; }
 
-        [NotMapped]
+
         public ICollection<Temporadas> ListaDeTemporadas { get; set; }
 
-        [NotMapped]
         public ICollection<UtilizadoresVideos> ListaDeUtilizadores { get; set; }
     }
 }

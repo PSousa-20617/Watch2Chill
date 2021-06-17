@@ -3,20 +3,22 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Watch2Chill.Data;
 
-namespace Watch2Chill.Data.Migrations
+namespace Watch2Chill.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210617000502_begin")]
+    partial class begin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -499,66 +501,43 @@ namespace Watch2Chill.Data.Migrations
 
             modelBuilder.Entity("Watch2Chill.Models.UtilizadoresVideos", b =>
                 {
-                    b.Property<int>("Key")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Id1")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdUtilizadorFK")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdUtilizadorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdVideo1")
                         .HasColumnType("int");
 
                     b.Property<int>("IdVideoFK")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdVideos")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.Property<int>("Id_Utilizadores")
-                        .HasColumnType("int");
+                    b.HasIndex("IdUtilizadorFK");
 
-                    b.HasKey("Key");
+                    b.HasIndex("IdVideoFK");
 
-                    b.HasIndex("Id1");
-
-                    b.HasIndex("IdUtilizadorId");
-
-                    b.HasIndex("IdVideo1");
-
-                    b.ToTable("Utilizadores_videos");
+                    b.ToTable("UtilizadoresVideos");
 
                     b.HasData(
                         new
                         {
-                            Key = 1,
-                            IdUtilizadorFK = 0,
-                            IdVideoFK = 0,
-                            IdVideos = 1,
-                            Id_Utilizadores = 2
+                            Id = 1,
+                            IdUtilizadorFK = 2,
+                            IdVideoFK = 1
                         },
                         new
                         {
-                            Key = 2,
-                            IdUtilizadorFK = 0,
-                            IdVideoFK = 0,
-                            IdVideos = 2,
-                            Id_Utilizadores = 3
+                            Id = 2,
+                            IdUtilizadorFK = 3,
+                            IdVideoFK = 2
                         },
                         new
                         {
-                            Key = 3,
-                            IdUtilizadorFK = 0,
-                            IdVideoFK = 0,
-                            IdVideos = 3,
-                            Id_Utilizadores = 4
+                            Id = 3,
+                            IdUtilizadorFK = 4,
+                            IdVideoFK = 3
                         });
                 });
 
@@ -770,7 +749,7 @@ namespace Watch2Chill.Data.Migrations
             modelBuilder.Entity("Watch2Chill.Models.Episodios", b =>
                 {
                     b.HasOne("Watch2Chill.Models.Temporadas", "Id_serie")
-                        .WithMany()
+                        .WithMany("ListaDeEpisodios")
                         .HasForeignKey("Id_serieIdSerie");
 
                     b.Navigation("Id_serie");
@@ -779,7 +758,7 @@ namespace Watch2Chill.Data.Migrations
             modelBuilder.Entity("Watch2Chill.Models.Temporadas", b =>
                 {
                     b.HasOne("Watch2Chill.Models.Videos", "Id")
-                        .WithMany()
+                        .WithMany("ListaDeTemporadas")
                         .HasForeignKey("IdVideo");
 
                     b.Navigation("Id");
@@ -787,23 +766,38 @@ namespace Watch2Chill.Data.Migrations
 
             modelBuilder.Entity("Watch2Chill.Models.UtilizadoresVideos", b =>
                 {
-                    b.HasOne("Watch2Chill.Models.Utilizadores", "Id")
-                        .WithMany()
-                        .HasForeignKey("Id1");
-
                     b.HasOne("Watch2Chill.Models.Utilizadores", "IdUtilizador")
-                        .WithMany()
-                        .HasForeignKey("IdUtilizadorId");
+                        .WithMany("ListaDeVideos")
+                        .HasForeignKey("IdUtilizadorFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Watch2Chill.Models.Videos", "IdVideo")
-                        .WithMany()
-                        .HasForeignKey("IdVideo1");
-
-                    b.Navigation("Id");
+                        .WithMany("ListaDeUtilizadores")
+                        .HasForeignKey("IdVideoFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("IdUtilizador");
 
                     b.Navigation("IdVideo");
+                });
+
+            modelBuilder.Entity("Watch2Chill.Models.Temporadas", b =>
+                {
+                    b.Navigation("ListaDeEpisodios");
+                });
+
+            modelBuilder.Entity("Watch2Chill.Models.Utilizadores", b =>
+                {
+                    b.Navigation("ListaDeVideos");
+                });
+
+            modelBuilder.Entity("Watch2Chill.Models.Videos", b =>
+                {
+                    b.Navigation("ListaDeTemporadas");
+
+                    b.Navigation("ListaDeUtilizadores");
                 });
 #pragma warning restore 612, 618
         }
