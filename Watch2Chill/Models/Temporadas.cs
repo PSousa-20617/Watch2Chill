@@ -9,19 +9,45 @@ namespace Watch2Chill.Models
 {
     public class Temporadas
     {
-        public Temporadas(){
+        /// <summary>
+        /// Lista de episódios de uma determinada temporada
+        /// </summary>
+        public Temporadas()
+        {
             ListaDeEpisodios = new HashSet<Episodios>();
 
-    }
+        }
+
+        /// <summary>
+        /// Atributo que relaciona o id da temporada com a respetiva série
+        /// </summary>
         [Key]
-        public int Num { get; set; }
+        public int IdSerie { get; set; }
 
-        public int N_episódios { get; set; }
 
+        /// <summary>
+        /// Atributo que menciona o número de temporadas de uma dada série, dado o seu Id
+        /// </summary>
+        public int NumTemps { get; set; }
+
+
+        public int NumEps { get; set; }
+
+
+        public string DataFim { get; set; }
+
+
+        /// <summary>
+        /// Atributo chave forasteira que relaciona a temporada com a sua respetiva série
+        /// </summary>
         [ForeignKey("Video")]
-        public int Id_VideosFK { get; set; }
+        public int IdVideosFK { get; set; }
         public Videos Id { get; set; }
 
+
+        /// <summary>
+        /// Coleção lista de episodios de uma dada temporada
+        /// </summary>
         public ICollection<Episodios> ListaDeEpisodios { get; set; }
     }
 }
