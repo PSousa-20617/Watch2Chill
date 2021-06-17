@@ -9,22 +9,28 @@ namespace Watch2Chill.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        /// <summary>
+        /// construtor da classe ApplicationDbContext
+        /// indicar onde está a BD à qual estas classes (tabelas) serão associadas
+        /// ver o conteúdo do ficheiro 'startup.cs'
+        /// </summary>
+        /// <param name="options"></param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options){}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //importa todo o 'funcionamento' prévio do método
             base.OnModelCreating(modelBuilder);
 
             // insert DB seed
 
             modelBuilder.Entity<Utilizadores>().HasData(
-               new Utilizadores { Id = 1, Nome = "Fernando Fernao", Email = "a@a.a", Morada = "Rua do Lago", Sexo = "M", DataNascimento = new DateTime(13 / 05 / 1990) },
-               new Utilizadores { Id = 2, Nome = "Rodrigo Rodrigues", Email = "b@b.b", Morada = "Rua da Estrela", Sexo = "M", DataNascimento = new DateTime(09 / 02 / 1984) },
-               new Utilizadores { Id = 3, Nome = "Gonçalo Gonçalves", Email = "c@c.c", Morada = "Rua da Lua", Sexo = "M", DataNascimento = new DateTime(25 / 08 / 1993) },
-               new Utilizadores { Id = 4, Nome = "Maria Silva", Email = "d@d.d", Morada = "Rua do Sol", Sexo = "F", DataNascimento = new DateTime(30 / 11 / 1987) },
-               new Utilizadores { Id = 5, Nome = "Bernardo Alentejo", Email = "e@e.e", Morada = "Rua da Ribeira", Sexo = "M", DataNascimento = new DateTime(19 / 04 / 1997) }
+               new Utilizadores { Id = 1, Nome = "Fernando Fernao", Email = "a@a.a", Morada = "Rua do Lago",CodPostal= "2313-231", Sexo = "M", DataNascimento = new DateTime(13 / 05 / 1990) },
+               new Utilizadores { Id = 2, Nome = "Rodrigo Rodrigues", Email = "b@b.b", Morada = "Rua da Estrela", CodPostal = "3100-121", Sexo = "M", DataNascimento = new DateTime(09 / 02 / 1984) },
+               new Utilizadores { Id = 3, Nome = "Gonçalo Gonçalves", Email = "c@c.c", Morada = "Rua da Lua", CodPostal = "3152-344", Sexo = "M", DataNascimento = new DateTime(25 / 08 / 1993) },
+               new Utilizadores { Id = 4, Nome = "Maria Silva", Email = "d@d.d", Morada = "Rua do Sol", CodPostal = "1222-783", Sexo = "F", DataNascimento = new DateTime(30 / 11 / 1987) },
+               new Utilizadores { Id = 5, Nome = "Bernardo Alentejo", Email = "e@e.e", Morada = "Rua da Ribeira", CodPostal = "1284-231", Sexo = "M", DataNascimento = new DateTime(19 / 04 / 1997) }
             );
 
             modelBuilder.Entity<UtilizadoresVideos>().HasData(

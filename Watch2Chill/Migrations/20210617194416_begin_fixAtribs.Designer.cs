@@ -10,8 +10,8 @@ using Watch2Chill.Data;
 namespace Watch2Chill.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210617000502_begin")]
-    partial class begin
+    [Migration("20210617194416_begin_fixAtribs")]
+    partial class begin_fixAtribs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -426,15 +426,17 @@ namespace Watch2Chill.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CodPostal")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Morada")
                         .IsRequired()
@@ -455,6 +457,7 @@ namespace Watch2Chill.Migrations
                         new
                         {
                             Id = 1,
+                            CodPostal = "2313-231",
                             DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "a@a.a",
                             Morada = "Rua do Lago",
@@ -464,6 +467,7 @@ namespace Watch2Chill.Migrations
                         new
                         {
                             Id = 2,
+                            CodPostal = "3100-121",
                             DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "b@b.b",
                             Morada = "Rua da Estrela",
@@ -473,6 +477,7 @@ namespace Watch2Chill.Migrations
                         new
                         {
                             Id = 3,
+                            CodPostal = "3152-344",
                             DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "c@c.c",
                             Morada = "Rua da Lua",
@@ -482,6 +487,7 @@ namespace Watch2Chill.Migrations
                         new
                         {
                             Id = 4,
+                            CodPostal = "1222-783",
                             DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "d@d.d",
                             Morada = "Rua do Sol",
@@ -491,6 +497,7 @@ namespace Watch2Chill.Migrations
                         new
                         {
                             Id = 5,
+                            CodPostal = "1284-231",
                             DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "e@e.e",
                             Morada = "Rua da Ribeira",
