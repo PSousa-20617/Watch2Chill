@@ -1,0 +1,48 @@
+﻿@model Watch2Chill.Models.Temporadas
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Temporadas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NumTemps" class="control-label"></label>
+                <input asp-for="NumTemps" class="form-control" />
+                <span asp-validation-for="NumTemps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumEps" class="control-label"></label>
+                <input asp-for="NumEps" class="form-control" />
+                <span asp-validation-for="NumEps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataFim" class="control-label"></label>
+                <input asp-for="DataFim" class="form-control" />
+                <span asp-validation-for="DataFim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdVideosFK" class="control-label"></label>
+                <input asp-for="IdVideosFK" class="form-control" />
+                <span asp-validation-for="IdVideosFK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -28,7 +28,8 @@ namespace Watch2Chill.Models
         /// <summary>
         /// Nome do filme/série
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "O Nome é de preenchimento obrigatório")]
+        [StringLength(60, ErrorMessage = "O {0} não pode ter mais de {1} caracteres.")]
         public string Nome { get; set; }
 
         
@@ -38,21 +39,21 @@ namespace Watch2Chill.Models
         /// <summary>
         /// Género de filme ou de série (EX: Terror, Comédia, Ação, Ficção Científica)
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "O Genero é de preenchimento obrigatório")]
         public string Genero { get; set; }
 
 
         /// <summary>
         /// Ano de lançamento do Filme ou Série
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "O Ano é de preenchimento obrigatório")]
         public int Ano { get; set; }
 
 
         /// <summary>
         /// Atores principais que entraram nos filmes ou séries
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "O Elenco é de preenchimento obrigatório")]
         public string Elenco { get; set; }
 
 
@@ -60,14 +61,14 @@ namespace Watch2Chill.Models
         /// <summary>
         /// Idioma do Filme/Série
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "O Idioma é de preenchimento obrigatório")]
         public string Idioma { get; set; }
 
 
         /// <summary>
         /// Realizador (ou Criador) do Filme/Série
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "O Realizador é de preenchimento obrigatório")]
         public string Realizador { get; set; }
 
 
