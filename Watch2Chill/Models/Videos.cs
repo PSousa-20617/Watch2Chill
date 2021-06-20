@@ -24,6 +24,11 @@ namespace Watch2Chill.Models
         [Key]
         public int IdVideo { get; set; }
 
+        /// <summary>
+        /// Fotografia correspondente ao filme ou série
+        /// </summary>
+        
+        public string Foto { get; set; }
 
         /// <summary>
         /// Nome do filme/série
@@ -72,11 +77,6 @@ namespace Watch2Chill.Models
         public string Realizador { get; set; }
 
 
-        /// <summary>
-        /// Fotografia correspondente ao filme ou série
-        /// </summary>
-        
-        public string Foto { get; set; }
 
         /// <summary>
         /// Ficheiro mp4 do filme
@@ -88,6 +88,7 @@ namespace Watch2Chill.Models
         /// <summary>
         /// Número de temporadas. Se o valor deste atributo for 0, então trata-se de um Filme, caso contrário, trata-se de uma série
         /// </summary>
+        [Display(Name = "Numero de Temporadas")]
         public int NTemporadas { get; set; }
 
 

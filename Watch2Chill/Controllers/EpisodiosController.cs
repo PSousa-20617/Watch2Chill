@@ -10,22 +10,22 @@ using Watch2Chill.Models;
 
 namespace Watch2Chill.Controllers
 {
-    public class VideosController : Controller
+    public class EpisodiosController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public VideosController(ApplicationDbContext context)
+        public EpisodiosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Videos
+        // GET: Episodios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Videos.ToListAsync());
+            return View(await _context.Episodios.ToListAsync());
         }
 
-        // GET: Videos/Details/5
+        // GET: Episodios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-            var videos = await _context.Videos
-                .FirstOrDefaultAsync(m => m.IdVideo == id);
-            if (videos == null)
+            var episodios = await _context.Episodios
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (episodios == null)
             {
                 return NotFound();
             }
 
-            return View(videos);
+            return View(episodios);
         }
 
-        // GET: Videos/Create
+        // GET: Episodios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Videos/Create
+        // POST: Episodios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdVideo,Foto,Nome,Trailer,Genero,Ano,Elenco,Idioma,Realizador,Filme,NTemporadas")] Videos videos)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Foto,Video,Id_serieFK")] Episodios episodios)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(videos);
+                _context.Add(episodios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(videos);
+            return View(episodios);
         }
 
-        // GET: Videos/Edit/5
+        // GET: Episodios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-            var videos = await _context.Videos.FindAsync(id);
-            if (videos == null)
+            var episodios = await _context.Episodios.FindAsync(id);
+            if (episodios == null)
             {
                 return NotFound();
             }
-            return View(videos);
+            return View(episodios);
         }
 
-        // POST: Videos/Edit/5
+        // POST: Episodios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdVideo,Foto,Nome,Trailer,Genero,Ano,Elenco,Idioma,Realizador,Filme,NTemporadas")] Videos videos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Foto,Video,Id_serieFK")] Episodios episodios)
         {
-            if (id != videos.IdVideo)
+            if (id != episodios.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Watch2Chill.Controllers
             {
                 try
                 {
-                    _context.Update(videos);
+                    _context.Update(episodios);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VideosExists(videos.IdVideo))
+                    if (!EpisodiosExists(episodios.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Watch2Chill.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(videos);
+            return View(episodios);
         }
 
-        // GET: Videos/Delete/5
+        // GET: Episodios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-            var videos = await _context.Videos
-                .FirstOrDefaultAsync(m => m.IdVideo == id);
-            if (videos == null)
+            var episodios = await _context.Episodios
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (episodios == null)
             {
                 return NotFound();
             }
 
-            return View(videos);
+            return View(episodios);
         }
 
-        // POST: Videos/Delete/5
+        // POST: Episodios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var videos = await _context.Videos.FindAsync(id);
-            _context.Videos.Remove(videos);
+            var episodios = await _context.Episodios.FindAsync(id);
+            _context.Episodios.Remove(episodios);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VideosExists(int id)
+        private bool EpisodiosExists(int id)
         {
-            return _context.Videos.Any(e => e.IdVideo == id);
+            return _context.Episodios.Any(e => e.Id == id);
         }
     }
 }

@@ -138,7 +138,7 @@ namespace Watch2Chill.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Temporadas",
-                columns: new[] { "IdSerie", "DataFim", "IdVideo", "IdVideosFK", "NumEps", "NumTemps" },
+                columns: new[] { "IdSerie", "Data", "IdVideo", "IdVideosFK", "NumEps", "NumTemps" },
                 values: new object[,]
                 {
                     { 10, "Ainda a decorrer", null, 10, 30, 3 },

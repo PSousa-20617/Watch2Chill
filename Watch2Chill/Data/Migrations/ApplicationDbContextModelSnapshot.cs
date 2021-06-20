@@ -317,7 +317,7 @@ namespace Watch2Chill.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DataFim")
+                    b.Property<string>("Data")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("IdVideo")
@@ -377,7 +377,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 6,
-                            DataFim = "2015",
+                            Data = "2015",
                             IdVideosFK = 6,
                             NumEps = 62,
                             NumTemps = 5
@@ -385,7 +385,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 7,
-                            DataFim = "2019",
+                            Data = "2019",
                             IdVideosFK = 7,
                             NumEps = 73,
                             NumTemps = 3
@@ -393,7 +393,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 8,
-                            DataFim = "Ainda a decorrer",
+                            Data = "Ainda a decorrer",
                             IdVideosFK = 8,
                             NumEps = 41,
                             NumTemps = 4
@@ -401,7 +401,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 9,
-                            DataFim = "Ainda a decorrer",
+                            Data = "Ainda a decorrer",
                             IdVideosFK = 9,
                             NumEps = 16,
                             NumTemps = 2
@@ -409,7 +409,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 10,
-                            DataFim = "Ainda a decorrer",
+                            Data = "Ainda a decorrer",
                             IdVideosFK = 10,
                             NumEps = 30,
                             NumTemps = 3

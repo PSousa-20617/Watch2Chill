@@ -10,8 +10,8 @@ using Watch2Chill.Data;
 namespace Watch2Chill.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210618170255_temporadas")]
-    partial class temporadas
+    [Migration("20210620170546_temporadasController")]
+    partial class temporadasController
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -379,7 +379,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 6,
-                            DataFim = "2015",
+                            Data = "2015",
                             IdVideosFK = 6,
                             NumEps = 62,
                             NumTemps = 5
@@ -387,7 +387,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 7,
-                            DataFim = "2019",
+                            Data = "2019",
                             IdVideosFK = 7,
                             NumEps = 73,
                             NumTemps = 3
@@ -395,7 +395,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 8,
-                            DataFim = "Ainda a decorrer",
+                            Data = "Ainda a decorrer",
                             IdVideosFK = 8,
                             NumEps = 41,
                             NumTemps = 4
@@ -403,7 +403,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 9,
-                            DataFim = "Ainda a decorrer",
+                            Data = "Ainda a decorrer",
                             IdVideosFK = 9,
                             NumEps = 16,
                             NumTemps = 2
@@ -411,7 +411,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 10,
-                            DataFim = "Ainda a decorrer",
+                            Data = "Ainda a decorrer",
                             IdVideosFK = 10,
                             NumEps = 30,
                             NumTemps = 3
@@ -594,6 +594,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 1,
                             Ano = 1972,
                             Elenco = "Al Pacino, Marlon Brando, James Caan, Richard S. Castellano",
+                            Foto = "TheGodfather.jpg",
                             Genero = "Crime, Drama",
                             Idioma = "Inglês",
                             NTemporadas = 0,
@@ -605,6 +606,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 2,
                             Ano = 2008,
                             Elenco = "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+                            Foto = "TheDarkKnight.jpg",
                             Genero = "Crime, Drama, Ação",
                             Idioma = "Inglês",
                             NTemporadas = 0,
@@ -616,6 +618,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 3,
                             Ano = 2001,
                             Elenco = "Alan Howard, Noel Appleby, Sean Astin, Sala Baker",
+                            Foto = "TheLordOfTheRings.jpg",
                             Genero = "Aventura, Fantasia, Drama",
                             Idioma = "Inglês",
                             NTemporadas = 0,
@@ -627,6 +630,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 4,
                             Ano = 1977,
                             Elenco = "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing",
+                            Foto = "StarWars.jpg",
                             Genero = "Aventura, Ação, Fantasia",
                             Idioma = "Inglês",
                             NTemporadas = 0,
@@ -638,6 +642,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 5,
                             Ano = 2001,
                             Elenco = "Daniel Radcliffe, Rupert Grint, Richard Harris",
+                            Foto = "HarryPotter.jpg",
                             Genero = "Fantasia, Aventura, Família",
                             Idioma = "Inglês",
                             NTemporadas = 0,
@@ -649,6 +654,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 6,
                             Ano = 2008,
                             Elenco = "Bryan Cranston, Anna Gunn, Aaron Paul, Dean Norris",
+                            Foto = "BreakingBad.jpg",
                             Genero = "Drama, Crime, Thriller",
                             Idioma = "Inglês",
                             NTemporadas = 5,
@@ -660,6 +666,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 7,
                             Ano = 2011,
                             Elenco = " Emilia Clarke, Peter Dinklage, Lena Headey, Peter Dinklage, Kit Harington",
+                            Foto = "GameOfThrones.jpg",
                             Genero = "Aventura, Drama, Fantasia",
                             Idioma = "Inglês",
                             NTemporadas = 8,
@@ -671,6 +678,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 8,
                             Ano = 2013,
                             Elenco = "Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke",
+                            Foto = "RickMorty.jpg",
                             Genero = "Animação, Aventura, Comédia",
                             Idioma = "Inglês",
                             NTemporadas = 41,
@@ -682,6 +690,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 9,
                             Ano = 2020,
                             Elenco = "Justin Roiland, Sean Giambrone, Thomas Middleditch",
+                            Foto = "solarOpposites.jpg",
                             Genero = "Animação, Faroeste, Ficção Científica",
                             Idioma = "Inglês",
                             NTemporadas = 2,
@@ -693,6 +702,7 @@ namespace Watch2Chill.Data.Migrations
                             IdVideo = 10,
                             Ano = 2018,
                             Elenco = "Olan Rogers, Fred Armisen, David Tennant",
+                            Foto = "FinalSpace.jpg",
                             Genero = "Animação, Aventura, Comédia",
                             Idioma = "Inglês",
                             NTemporadas = 3,

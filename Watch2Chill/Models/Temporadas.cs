@@ -28,19 +28,21 @@ namespace Watch2Chill.Models
         /// <summary>
         /// Atributo que menciona o número de temporadas de uma dada série, dado o seu Id
         /// </summary>
+        [Display(Name = "Numero de Temporadas")]
         public int NumTemps { get; set; }
 
-
+        [Display(Name = "Numero de Episodios")]
         public int NumEps { get; set; }
 
 
-        public string DataFim { get; set; }
+        public string Data { get; set; }
 
 
         /// <summary>
         /// Atributo chave forasteira que relaciona a temporada com a sua respetiva série
         /// </summary>
-        [ForeignKey("Video")]
+        [ForeignKey("Videos")]
+        [Display(Name = "Video")]
         public int IdVideosFK { get; set; }
         public Videos Id { get; set; }
 

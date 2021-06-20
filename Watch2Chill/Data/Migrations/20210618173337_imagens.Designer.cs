@@ -319,7 +319,7 @@ namespace Watch2Chill.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DataFim")
+                    b.Property<string>("Data")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("IdVideo")

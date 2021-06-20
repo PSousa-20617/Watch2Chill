@@ -10,22 +10,22 @@ using Watch2Chill.Models;
 
 namespace Watch2Chill.Controllers
 {
-    public class VideosController : Controller
+    public class UtilizadoresController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public VideosController(ApplicationDbContext context)
+        public UtilizadoresController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Videos
+        // GET: Utilizadores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Videos.ToListAsync());
+            return View(await _context.Utilizadores.ToListAsync());
         }
 
-        // GET: Videos/Details/5
+        // GET: Utilizadores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-            var videos = await _context.Videos
-                .FirstOrDefaultAsync(m => m.IdVideo == id);
-            if (videos == null)
+            var utilizadores = await _context.Utilizadores
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (utilizadores == null)
             {
                 return NotFound();
             }
 
-            return View(videos);
+            return View(utilizadores);
         }
 
-        // GET: Videos/Create
+        // GET: Utilizadores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Videos/Create
+        // POST: Utilizadores/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdVideo,Foto,Nome,Trailer,Genero,Ano,Elenco,Idioma,Realizador,Filme,NTemporadas")] Videos videos)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Morada,CodPostal,Sexo,DataNascimento")] Utilizadores utilizadores)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(videos);
+                _context.Add(utilizadores);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(videos);
+            return View(utilizadores);
         }
 
-        // GET: Videos/Edit/5
+        // GET: Utilizadores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-            var videos = await _context.Videos.FindAsync(id);
-            if (videos == null)
+            var utilizadores = await _context.Utilizadores.FindAsync(id);
+            if (utilizadores == null)
             {
                 return NotFound();
             }
-            return View(videos);
+            return View(utilizadores);
         }
 
-        // POST: Videos/Edit/5
+        // POST: Utilizadores/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdVideo,Foto,Nome,Trailer,Genero,Ano,Elenco,Idioma,Realizador,Filme,NTemporadas")] Videos videos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Morada,CodPostal,Sexo,DataNascimento")] Utilizadores utilizadores)
         {
-            if (id != videos.IdVideo)
+            if (id != utilizadores.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Watch2Chill.Controllers
             {
                 try
                 {
-                    _context.Update(videos);
+                    _context.Update(utilizadores);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VideosExists(videos.IdVideo))
+                    if (!UtilizadoresExists(utilizadores.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Watch2Chill.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(videos);
+            return View(utilizadores);
         }
 
-        // GET: Videos/Delete/5
+        // GET: Utilizadores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-            var videos = await _context.Videos
-                .FirstOrDefaultAsync(m => m.IdVideo == id);
-            if (videos == null)
+            var utilizadores = await _context.Utilizadores
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (utilizadores == null)
             {
                 return NotFound();
             }
 
-            return View(videos);
+            return View(utilizadores);
         }
 
-        // POST: Videos/Delete/5
+        // POST: Utilizadores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var videos = await _context.Videos.FindAsync(id);
-            _context.Videos.Remove(videos);
+            var utilizadores = await _context.Utilizadores.FindAsync(id);
+            _context.Utilizadores.Remove(utilizadores);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VideosExists(int id)
+        private bool UtilizadoresExists(int id)
         {
-            return _context.Videos.Any(e => e.IdVideo == id);
+            return _context.Utilizadores.Any(e => e.Id == id);
         }
     }
 }

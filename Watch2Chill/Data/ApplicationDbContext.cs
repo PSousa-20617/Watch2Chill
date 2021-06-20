@@ -36,16 +36,16 @@ namespace Watch2Chill.Data
             );
 
             modelBuilder.Entity<Videos>().HasData(
-               new Videos { IdVideo = 1, Nome = "The Godfather", Genero = "Crime, Drama", Ano = 1972, Elenco = "Al Pacino, Marlon Brando, James Caan, Richard S. Castellano", Idioma = "Inglês", Realizador = "Francis Ford Coppola", Foto = "TheGodfather.jpg", NTemporadas = 0 },
-               new Videos { IdVideo = 2, Nome = "The dark Knight", Genero = "Crime, Drama, Ação", Ano = 2008, Elenco = "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine", Idioma = "Inglês", Realizador = "Christopher Nolan", Foto = "TheDarkKnight.jpg", NTemporadas = 0 },
-               new Videos { IdVideo = 3, Nome = "The Lord of the Rings", Genero = "Aventura, Fantasia, Drama", Ano = 2001, Elenco = "Alan Howard, Noel Appleby, Sean Astin, Sala Baker", Idioma = "Inglês", Realizador = "Peter Jackson", Foto = "TheLordOfTheRings.jpg", NTemporadas = 0 },
-               new Videos { IdVideo = 4, Nome = "Star Wars: Episode I", Genero = "Aventura, Ação, Fantasia", Ano = 1977, Elenco = "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing", Idioma = "Inglês", Realizador = "George Lucas", Foto = "StarWars.jpg", NTemporadas = 0 },
-               new Videos { IdVideo = 5, Nome = "Harry Potter", Genero = "Fantasia, Aventura, Família", Ano = 2001, Elenco = "Daniel Radcliffe, Rupert Grint, Richard Harris", Idioma = "Inglês", Realizador = "Chris Columbus", Foto = "HarryPotter.jpg", NTemporadas = 0 },
-               new Videos { IdVideo = 6, Nome = "Breaking Bad", Genero = "Drama, Crime, Thriller", Ano = 2008, Elenco = "Bryan Cranston, Anna Gunn, Aaron Paul, Dean Norris", Idioma = "Inglês", Realizador = "Vince Gilligan", Foto = "BreakingBad.jpg", NTemporadas = 5 },
-               new Videos { IdVideo = 7, Nome = "Game of Thrones", Genero = "Aventura, Drama, Fantasia", Ano = 2011, Elenco = " Emilia Clarke, Peter Dinklage, Lena Headey, Peter Dinklage, Kit Harington", Idioma = "Inglês", Realizador = "D.B. Weiss, David Benioff", Foto = "GameOfThrones.jpg", NTemporadas = 8 },
-               new Videos { IdVideo = 8, Nome = "Rick and Morty", Genero = "Animação, Aventura, Comédia", Ano = 2013, Elenco = "Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke", Idioma = "Inglês", Realizador = "Dan Harmon, Justin Roiland", Foto = "RickMorty.jpg", NTemporadas = 41 },
-               new Videos { IdVideo = 9, Nome = "Solar Opposites", Genero = "Animação, Faroeste, Ficção Científica", Ano = 2020, Elenco = "Justin Roiland, Sean Giambrone, Thomas Middleditch", Idioma = "Inglês", Realizador = "Justin Roiland, Mike McMahan", Foto = "solarOpposites.jpg", NTemporadas = 2 },
-               new Videos { IdVideo = 10, Nome = "Final Space", Genero = "Animação, Aventura, Comédia", Ano = 2018, Elenco = "Olan Rogers, Fred Armisen, David Tennant", Idioma = "Inglês", Realizador = "Olan Rogers", Foto = "FinalSpace.jpg", NTemporadas = 3 }
+               new Videos { IdVideo = 1, Foto = "TheGodfather.jpg", Nome = "The Godfather", Genero = "Crime, Drama", Ano = 1972, Elenco = "Al Pacino, Marlon Brando, James Caan, Richard S. Castellano", Idioma = "Inglês", Realizador = "Francis Ford Coppola", NTemporadas = 0 },
+               new Videos { IdVideo = 2, Foto = "TheDarkKnight.jpg", Nome = "The dark Knight", Genero = "Crime, Drama, Ação", Ano = 2008, Elenco = "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine", Idioma = "Inglês", Realizador = "Christopher Nolan", NTemporadas = 0 },
+               new Videos { IdVideo = 3, Foto = "TheLordOfTheRings.jpg", Nome = "The Lord of the Rings", Genero = "Aventura, Fantasia, Drama", Ano = 2001, Elenco = "Alan Howard, Noel Appleby, Sean Astin, Sala Baker", Idioma = "Inglês", Realizador = "Peter Jackson", NTemporadas = 0 },
+               new Videos { IdVideo = 4, Foto = "StarWars.jpg", Nome = "Star Wars: Episode I", Genero = "Aventura, Ação, Fantasia", Ano = 1977, Elenco = "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing", Idioma = "Inglês", Realizador = "George Lucas", NTemporadas = 0 },
+               new Videos { IdVideo = 5, Foto = "HarryPotter.jpg", Nome = "Harry Potter", Genero = "Fantasia, Aventura, Família", Ano = 2001, Elenco = "Daniel Radcliffe, Rupert Grint, Richard Harris", Idioma = "Inglês", Realizador = "Chris Columbus", NTemporadas = 0 },
+               new Videos { IdVideo = 6, Foto = "BreakingBad.jpg", Nome = "Breaking Bad", Genero = "Drama, Crime, Thriller", Ano = 2008, Elenco = "Bryan Cranston, Anna Gunn, Aaron Paul, Dean Norris", Idioma = "Inglês", Realizador = "Vince Gilligan", NTemporadas = 5 },
+               new Videos { IdVideo = 7, Foto = "GameOfThrones.jpg", Nome = "Game of Thrones", Genero = "Aventura, Drama, Fantasia", Ano = 2011, Elenco = " Emilia Clarke, Peter Dinklage, Lena Headey, Peter Dinklage, Kit Harington", Idioma = "Inglês", Realizador = "D.B. Weiss, David Benioff", NTemporadas = 8 },
+               new Videos { IdVideo = 8, Foto = "RickMorty.jpg", Nome = "Rick and Morty", Genero = "Animação, Aventura, Comédia", Ano = 2013, Elenco = "Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke", Idioma = "Inglês", Realizador = "Dan Harmon, Justin Roiland", NTemporadas = 41 },
+               new Videos { IdVideo = 9, Foto = "solarOpposites.jpg", Nome = "Solar Opposites", Genero = "Animação, Faroeste, Ficção Científica", Ano = 2020, Elenco = "Justin Roiland, Sean Giambrone, Thomas Middleditch", Idioma = "Inglês", Realizador = "Justin Roiland, Mike McMahan", NTemporadas = 2 },
+               new Videos { IdVideo = 10, Foto = "FinalSpace.jpg", Nome = "Final Space", Genero = "Animação, Aventura, Comédia", Ano = 2018, Elenco = "Olan Rogers, Fred Armisen, David Tennant", Idioma = "Inglês", Realizador = "Olan Rogers", NTemporadas = 3 }
             );
 
             modelBuilder.Entity<Temporadas>().HasData(
@@ -54,11 +54,11 @@ namespace Watch2Chill.Data
                new Temporadas { IdSerie = 3, NumTemps = 0, NumEps = 1, IdVideosFK = 3 },
                new Temporadas { IdSerie = 4, NumTemps = 0, NumEps = 1, IdVideosFK = 4 },
                new Temporadas { IdSerie = 5, NumTemps = 0, NumEps = 1, IdVideosFK = 5 },
-               new Temporadas { IdSerie = 6, NumTemps = 5, NumEps = 62, IdVideosFK = 6, DataFim = "2015" },
-               new Temporadas { IdSerie = 7, NumTemps = 3, NumEps = 73, IdVideosFK = 7, DataFim = "2019" },
-               new Temporadas { IdSerie = 8, NumTemps = 4, NumEps = 41, IdVideosFK = 8, DataFim = "Ainda a decorrer" },
-               new Temporadas { IdSerie = 9, NumTemps = 2, NumEps = 16, IdVideosFK = 9, DataFim = "Ainda a decorrer" },
-               new Temporadas { IdSerie = 10, NumTemps = 3, NumEps = 30, IdVideosFK = 10, DataFim = "Ainda a decorrer" }
+               new Temporadas { IdSerie = 6, NumTemps = 5, NumEps = 62, IdVideosFK = 6, Data = "2015" },
+               new Temporadas { IdSerie = 7, NumTemps = 3, NumEps = 73, IdVideosFK = 7, Data = "2019" },
+               new Temporadas { IdSerie = 8, NumTemps = 4, NumEps = 41, IdVideosFK = 8, Data = "Ainda a decorrer" },
+               new Temporadas { IdSerie = 9, NumTemps = 2, NumEps = 16, IdVideosFK = 9, Data = "Ainda a decorrer" },
+               new Temporadas { IdSerie = 10, NumTemps = 3, NumEps = 30, IdVideosFK = 10, Data = "Ainda a decorrer" }
             );
 
             modelBuilder.Entity<Episodios>().HasData(

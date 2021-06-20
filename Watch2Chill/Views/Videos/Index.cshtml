@@ -13,6 +13,10 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
@@ -34,9 +38,6 @@
                 @Html.DisplayNameFor(model => model.Realizador)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Foto)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Filme)
             </th>
             <th>
@@ -48,6 +49,10 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
@@ -70,18 +75,15 @@
                 @Html.DisplayFor(modelItem => item.Realizador)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Foto)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Filme)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NTemporadas)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdVideo">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdVideo">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdVideo">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdVideo">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdVideo">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdVideo">Eliminar</a>
             </td>
         </tr>
 }
