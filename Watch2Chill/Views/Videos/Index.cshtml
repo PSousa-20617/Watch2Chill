@@ -50,7 +50,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Foto)
+
+                <img src="~/Imagens/Videos/@Html.DisplayFor(modelItem => item.Foto)"
+                     width="50"
+                     alt="Fotografia do video @Html.DisplayFor(modelItem => item.IdVideo)"
+                     title="@Html.DisplayFor(modelItem => item.IdVideo)" />
+
             </td>
 
             <td>

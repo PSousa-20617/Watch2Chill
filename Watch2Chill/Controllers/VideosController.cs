@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +17,14 @@ namespace Watch2Chill.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public VideosController(ApplicationDbContext context)
+        private readonly IWebHostEnvironment _caminho;
+
+        public VideosController(
+            ApplicationDbContext context,
+            IWebHostEnvironment caminho)
         {
             _context = context;
+            _caminho = caminho;
         }
 
         // GET: Videos
@@ -54,13 +62,68 @@ namespace Watch2Chill.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdVideo,Foto,Nome,Trailer,Genero,Ano,Elenco,Idioma,Realizador,Filme,NTemporadas")] Videos videos)
+        public async Task<IActionResult> Create([Bind("IdVideo,Foto,Nome,Trailer,Genero,Ano,Elenco,Idioma,Realizador,Filme,NTemporadas")] Videos videos, IFormFile fotoVideo)
         {
+            // var auxiliar
+            string nomeImagem = "";
+
+            if (fotoVideo == null)
+            {
+                //não ha ficheiro
+                ModelState.AddModelError("", "Adicione por favor a capa do video");
+                ViewData["IdVideo"] = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome", videos.IdVideo);
+                return View(videos);
+            }
+            else
+            {
+                //ha ficheiro mas sera valido
+                if (fotoVideo.ContentType == "image/jpeg" || fotoVideo.ContentType == "image/png")
+                {
+
+                    // definir o novo nome da fotografia     
+                    Guid g;
+                    g = Guid.NewGuid();
+                    nomeImagem = videos.IdVideo + "_" + g.ToString(); // tb, poderia ser usado a formatação da data atual
+                                                                  // determinar a extensão do nome da imagem
+                    string extensao = Path.GetExtension(fotoVideo.FileName).ToLower();
+                    // agora, consigo ter o nome final do ficheiro
+                    nomeImagem = nomeImagem + extensao;
+
+                    // associar este ficheiro aos dados da Fotografia do cão
+                    videos.Foto = nomeImagem;
+
+                    // localização do armazenamento da imagem
+                    string localizacaoFicheiro = _caminho.WebRootPath;
+                    nomeImagem = Path.Combine(localizacaoFicheiro, "Imagens\\Videos", nomeImagem);
+                }
+
+                else
+                {
+                    //ficheiro não valido
+                    ModelState.AddModelError("", "Apenas pode associar uma imagem a um video.");
+                    return View(videos);
+
+                }
+            }
             if (ModelState.IsValid)
             {
-                _context.Add(videos);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    //adicionar dados do novo video
+                    _context.Add(videos);
+                    //
+                    await _context.SaveChangesAsync();
+
+                    //se cheguei, tudo correu bem
+                    using var stream = new FileStream(nomeImagem, FileMode.Create);
+                    await fotoVideo.CopyToAsync(stream);
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Ocorreu um erro...");
+                }
             }
             return View(videos);
         }
