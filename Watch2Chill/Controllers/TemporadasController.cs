@@ -25,6 +25,10 @@ namespace Watch2Chill.Controllers
             //criação de uma variavel que vai conter um conjunto d dados vindos da base de dados
             var temporadas = _context.Temporadas.Include(t => t.Id);
 
+            //??????????????????????????????????????????????????????????????????????????????????????????????????????????????
+            //ViewBag.Id = _context.Videos.OrderBy(v => v.Nome);
+            //ViewBag.IdVideoFK = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome");
+            //ViewData["IdVideoFK"] = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome");
             return View(await temporadas.ToListAsync());
         }
 
@@ -53,7 +57,7 @@ namespace Watch2Chill.Controllers
             //o viewData transporta dados a serem associados ao atributo idVideosFK
             //o selectList é um tipo de dados especial que serve para armazenar a lista de opções de um objeto do tipo
             //select do html
-            ViewData["IdVideosFK"] = new SelectList(_context.Videos);
+            ViewData["IdVideosFK"] = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome");
             return View();
         }
 

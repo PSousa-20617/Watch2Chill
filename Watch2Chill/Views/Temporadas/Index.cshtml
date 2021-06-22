@@ -43,13 +43,14 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdVideosFK)
+                @*@ViewBag.Id*@
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdSerie">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdSerie">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdSerie">Eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdSerie">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.IdSerie">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.IdSerie">Eliminar</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>

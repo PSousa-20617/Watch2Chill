@@ -30,6 +30,7 @@ namespace Watch2Chill.Controllers
         // GET: Videos
         public async Task<IActionResult> Index()
         {
+            var videos = _context.Videos.Include(v => v.Foto);
             return View(await _context.Videos.ToListAsync());
         }
 
@@ -38,16 +39,16 @@ namespace Watch2Chill.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
 
             var videos = await _context.Videos
                 .FirstOrDefaultAsync(m => m.IdVideo == id);
             if (videos == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
-
+            //?????????????????????????????????????????????????????????????????????
             return View(videos);
         }
 
@@ -141,6 +142,16 @@ namespace Watch2Chill.Controllers
             {
                 return NotFound();
             }
+
+            //???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+            //problema com guardar id da foto
+
+            // guardar o ID do objeto enviado para o browser
+            // através de uma variável de sessão
+            //HttpContext.Session.SetInt32("NumFotoEmEdicao", videos.IdVideo);
+            //SessionExtensions["NumFotoEmEdicao"] = videos.Foto;
+            //HttpContext.Session.SetString("NumFotoEmEdicao", videos.Foto);
+
             return View(videos);
         }
 
@@ -155,6 +166,22 @@ namespace Watch2Chill.Controllers
             {
                 return NotFound();
             }
+            /*
+            // recuperar o ID do objeto enviado para o browser
+            var numIdFoto = HttpContext.Session.GetInt32("NumFotoEmEdicao");
+            //var Foto = HttpContext.Session.GetString("NumFotoEmEdicao");
+
+            // e compará-lo com o ID recebido
+            // se forem iguais, continuamos
+            // se forem diferentes, não fazemos a alteração
+
+            if (numIdFoto == null || numIdFoto != videos.IdVideo)
+            {
+                // se entro aqui, é pq houve problemas
+
+                // redirecionar para a página de início
+                return RedirectToAction("Index");
+            }*/
 
             if (ModelState.IsValid)
             {
@@ -176,6 +203,7 @@ namespace Watch2Chill.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(videos);
         }
 

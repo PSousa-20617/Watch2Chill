@@ -14,7 +14,12 @@
             @Html.DisplayNameFor(model => model.Foto)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Foto)
+            <img src="~/Imagens/Videos/@Html.DisplayFor(modelItem => Model.Foto)"
+                 width="50"
+                 alt="Fotografia do video @Html.DisplayFor(modelItem => Model.IdVideo)"
+                 title="@Html.DisplayFor(modelItem => Model.IdVideo)" />
+
+
         </dd>
 
         <dt class="col-sm-2">
