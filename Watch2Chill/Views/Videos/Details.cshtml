@@ -80,16 +80,20 @@
             Utilizadores
         </dt>
         <dd class="col-sm-10">
-           
+
             @foreach (var UtilizadoresVideo in Model.ListaDeUtilizadores)
             { // listar todas as faixas Associadas aos albuns que está em exibição
                 <tr>
-                    
-                        @UtilizadoresVideo.IdUtilizador.Nome
-                    
+
+                    @UtilizadoresVideo.IdUtilizador.Nome
+
                 </tr>
             }
         </dd>
+        <dt class="col-sm-2">
+            <a asp-controller="Temporadas" asp-action="Details" asp-route-id="@Model.IdVideo">Temporadas</a>
+        </dt>
+
 
     </dl>
 </div>

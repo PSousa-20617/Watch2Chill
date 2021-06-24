@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,18 +15,23 @@ using Watch2Chill.Models;
 
 namespace Watch2Chill.Controllers
 {
+
+    [Authorize]
     public class VideosController : Controller
     {
         private readonly ApplicationDbContext _context;
 
         private readonly IWebHostEnvironment _caminho;
 
+        private readonly UserManager<IdentityUser> _userManager;
         public VideosController(
             ApplicationDbContext context,
-            IWebHostEnvironment caminho)
+            IWebHostEnvironment caminho,
+            UserManager<IdentityUser> userManager)
         {
             _context = context;
             _caminho = caminho;
+            _userManager = userManager;
         }
 
         // GET: Videos
@@ -43,6 +50,9 @@ namespace Watch2Chill.Controllers
             }
 
             var videos = await _context.Videos
+                .Include(v => v.ListaDeTemporadas)
+                .Include(v => v.ListaDeUtilizadores)
+                .ThenInclude(uv => uv.IdUtilizador.UserName == _userManager.GetUserId(User))
                 .FirstOrDefaultAsync(m => m.IdVideo == id);
             if (videos == null)
             {

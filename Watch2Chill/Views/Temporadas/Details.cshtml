@@ -10,30 +10,42 @@
     <h4>Temporadas</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NumTemps)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumTemps)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NumEps)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumEps)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Data)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Data)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdVideosFK)
+        <dt class="col-sm-2">
+            Lista de Episodios
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdVideosFK)
+        <dd class="col-sm-10">
+
+            @foreach (var episodios in Model.ListaDeEpisodios)
+            { // listar todas as faixas Associadas aos albuns que está em exibição
+                <tr>
+
+                    @episodios.Nome
+
+                </tr>
+            }
         </dd>
+        <dt class="col-sm-2">
+            <a asp-controller="Episodios" asp-action="Details" asp-route-id="@Model.IdSerie">Episodios</a>
+
+        </dt>
     </dl>
 </div>
 <div>
