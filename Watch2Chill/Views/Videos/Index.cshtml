@@ -6,13 +6,17 @@
 
 <h1>Index</h1>
 
+@if (User.Identity.IsAuthenticated) {
+    //este link so vai aparecer para o utilizador autenticado
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Adicionar novo video</a>
 </p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
+                @*vai ao modelo e mostra o nome do atributo referido*@
                 @Html.DisplayNameFor(model => model.Foto)
             </th>
 
@@ -89,9 +93,17 @@
                 @Html.DisplayFor(modelItem => item.NTemporadas)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdVideo">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdVideo">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdVideo">Eliminar</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    //este link so vai aparecer para o utilizador autenticado
+                    <text>
+                        @*esta anotação marca o conteudo como texto*@
+                        <a asp-action="Edit" asp-route-id="@item.IdVideo">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.IdVideo">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.IdVideo">Eliminar</a>
+                    </text>
+                }
+
             </td>
         </tr>
 }

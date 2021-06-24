@@ -34,7 +34,9 @@ namespace Watch2Chill.Controllers
             _userManager = userManager;
         }
 
+
         // GET: Videos
+        [AllowAnonymous] //anula a necessidade de um utilizador estar autenticado para aceder a este metodo
         public async Task<IActionResult> Index()
         {
             var videos = _context.Videos.Include(v => v.Foto);
