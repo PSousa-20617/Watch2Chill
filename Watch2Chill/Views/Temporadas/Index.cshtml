@@ -43,15 +43,15 @@
             </td>
             <td>
                 @*porque???????????????????????????????????????????????????????????????????????????????????????????????????????*@
-                @*@Html.DisplayFor(modelItem => item.Id.Nome)*@
-                @Html.DisplayFor(modelItem => item.IdVideosFK)
+                @Html.DisplayFor(modelItem => item.Id.Nome)
+                @*@Html.DisplayFor(modelItem => item.IdVideosFK)*@
             </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.IdSerie">Editar</a> |
-                            <a asp-action="Details" asp-route-id="@item.IdSerie">Detalhes</a> |
-                            <a asp-action="Delete" asp-route-id="@item.IdSerie">Eliminar</a>
-                        </td>
-                    </tr>
-            }
-                </tbody>
-            </table>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdSerie">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.IdSerie">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.IdSerie">Eliminar</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>

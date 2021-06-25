@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,15 @@ using Watch2Chill.Models;
 
 namespace Watch2Chill.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    /// <summary>
+    /// classe para recolher os dados particulares dos utilizadores
+    /// </summary>
+    public class ApplicationUser : IdentityUser
+    {
+        //recolhe a data de registo de um utilizador
+        public DateTime DataRegisto { get; set; }
+    }
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -22,7 +31,7 @@ namespace Watch2Chill.Data
             // insert DB seed
 
             modelBuilder.Entity<Utilizadores>().HasData(
-               new Utilizadores { Id = 1, Nome = "Fernando Fernao", Email = "a@a.a", Morada = "Rua do Lago", Sexo = "M", DataNascimento = new DateTime(13 / 05 / 1990) },
+               new Utilizadores { Id = 1, Nome = "Fernando Fernao", Email = "admin@admin.com", Morada = "Rua do Lago", Sexo = "M", DataNascimento = new DateTime(13 / 05 / 1990) },
                new Utilizadores { Id = 2, Nome = "Rodrigo Rodrigues", Email = "b@b.b", Morada = "Rua da Estrela", Sexo = "M", DataNascimento = new DateTime(09 / 02 / 1984) },
                new Utilizadores { Id = 3, Nome = "Gonçalo Gonçalves", Email = "c@c.c", Morada = "Rua da Lua", Sexo = "M", DataNascimento = new DateTime(25 / 08 / 1993) },
                new Utilizadores { Id = 4, Nome = "Maria Silva", Email = "d@d.d", Morada = "Rua do Sol", Sexo = "F", DataNascimento = new DateTime(30 / 11 / 1987) },

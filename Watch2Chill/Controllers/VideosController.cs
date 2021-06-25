@@ -23,11 +23,11 @@ namespace Watch2Chill.Controllers
 
         private readonly IWebHostEnvironment _caminho;
 
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         public VideosController(
             ApplicationDbContext context,
             IWebHostEnvironment caminho,
-            UserManager<IdentityUser> userManager)
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _caminho = caminho;
@@ -39,7 +39,11 @@ namespace Watch2Chill.Controllers
         [AllowAnonymous] //anula a necessidade de um utilizador estar autenticado para aceder a este metodo
         public async Task<IActionResult> Index()
         {
-            var videos = _context.Videos.Include(v => v.Foto);
+            var videos = _context.Videos
+                .Include(v => v.Foto)
+                .Include(v => v.ListaDeTemporadas)
+                .Include(v => v.ListaDeUtilizadores)
+                .ThenInclude(uv => uv.IdUtilizador.UserName == _userManager.GetUserId(User));
             return View(await _context.Videos.ToListAsync());
         }
 
@@ -52,9 +56,11 @@ namespace Watch2Chill.Controllers
             }
 
             var videos = await _context.Videos
-                .Include(v => v.ListaDeTemporadas)
+                //.Include(v => v.ListaDeTemporadas)
+                //.Include(v => v.ListaDeUtilizadores)
+                //.ThenInclude(uv => uv.IdUtilizador.UserName == _userManager.GetUserId(User))
                 .Include(v => v.ListaDeUtilizadores)
-                .ThenInclude(uv => uv.IdUtilizador.UserName == _userManager.GetUserId(User))
+                .ThenInclude(uv => uv.IdUtilizador)
                 .FirstOrDefaultAsync(m => m.IdVideo == id);
             if (videos == null)
             {
