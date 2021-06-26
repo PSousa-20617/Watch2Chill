@@ -47,8 +47,10 @@ namespace Watch2Chill
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             // deixo de referir 'IdentityUser' e passo a usar 'ApplicationUser'
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(options => 
+                    options.SignIn.RequireConfirmedAccount = true)
+                           .AddRoles<IdentityRole>()    //ativa o uso de roles
+                           .AddEntityFrameworkStores<ApplicationDbContext>();
             
         }
 

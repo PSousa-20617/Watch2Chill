@@ -151,7 +151,8 @@ namespace Watch2Chill.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    //se se desejar associar o utilizador recém criado ao role 'Admninistrador'
+                    //se se desejar associar o utilizador recém criado ao role 'Utilizador'
+                    await _userManager.AddToRoleAsync(user, "Utilizador");
 
                     //*****************************************************************
                     //vamos proceder à operação de guardar os dados do Utilizador
@@ -160,7 +161,10 @@ namespace Watch2Chill.Areas.Identity.Pages.Account
                     Input.Utilizador.Email = Input.Email; // atribuir ao objeto 'Utilizador' o email fornecido pelo utilizador,
                                                           // a quando a escrita dos dados na interface
 
-                    Input.Utilizador.UserName = user.Id;
+                    Input.Utilizador.UserName = user.Id; // adicionar o ID do utilizador, para formar uma 'ponte' (fk) entre
+                                                         // os dados da autenticação e os dados do 'negócio'
+
+                    
 
                     //estamos em condições de guardar os dados na BD
                     try
