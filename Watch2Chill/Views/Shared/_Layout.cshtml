@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    @* Cabeçalho da nossa aplicação*@
     <header>
+
+        @* barra de navegação *@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-success border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Watch2Chill</a>
@@ -19,14 +22,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Videos">Videos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Videos">Vídeos</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Temporadas">Temporadas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Episodios">Espisodios</a>
-                        </li>*@
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Temporadas">Temporadas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Episodios">Espisodios</a>
+                            </li>*@
 
                     </ul>
                     <partial name="_LoginPartial" />

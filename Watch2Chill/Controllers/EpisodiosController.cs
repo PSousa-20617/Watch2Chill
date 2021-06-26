@@ -14,8 +14,14 @@ namespace Watch2Chill.Controllers
     [Authorize]
     public class EpisodiosController : Controller
     {
+        /// <summary>
+        /// referência à base de dados
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// objeto que sabe interagir com os dados do utilizador que se autêntica
+        /// </summary>
         public EpisodiosController(ApplicationDbContext context)
         {
             _context = context;

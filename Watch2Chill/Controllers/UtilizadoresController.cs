@@ -12,8 +12,14 @@ namespace Watch2Chill.Controllers
 {
     public class UtilizadoresController : Controller
     {
+        /// <summary>
+        /// referência à base de dados
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// objeto que sabe interagir com os dados do utilizador que se autêntica
+        /// </summary>
         public UtilizadoresController(ApplicationDbContext context)
         {
             _context = context;

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Watch2Chill.Data;
 
 namespace Watch2Chill.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210626180906_roles")]
+    partial class roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,14 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             Id = "a",
-                            ConcurrencyStamp = "1c201383-cb93-4ff8-8574-d1c88dc136da",
+                            ConcurrencyStamp = "f0a26718-30e8-49aa-8f7a-244c347b846b",
                             Name = "Admninistrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
                             Id = "u",
-                            ConcurrencyStamp = "59c2fa23-236a-4da1-a151-49159a1104e8",
+                            ConcurrencyStamp = "62071bba-d072-4ad6-ad41-1feb544b6751",
                             Name = "Utilizador",
                             NormalizedName = "UTILIZADOR"
                         });

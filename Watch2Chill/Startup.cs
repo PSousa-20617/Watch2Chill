@@ -37,12 +37,16 @@ namespace Watch2Chill
             });
 
             services.AddControllersWithViews();
+
+            // definir qual a classe que representa a Base de Dados
+            // e especifica qual o motor (engine) que manipula a base de dados
+            // Especifica, também, onde está a definição da localização da Base de Dados - ver ficheiro 'appSettings.json'
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            //deixar de referir identityUser e passar a usar applicationUser
+            // deixo de referir 'IdentityUser' e passo a usar 'ApplicationUser'
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             

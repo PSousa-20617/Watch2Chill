@@ -19,11 +19,21 @@ namespace Watch2Chill.Controllers
     [Authorize]
     public class VideosController : Controller
     {
+        /// <summary>
+        /// este atributo representa a base de dados do projeto
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// este atributo contém os dados da app web no servidor
+        /// </summary>
         private readonly IWebHostEnvironment _caminho;
 
+        /// <summary>
+        /// esta variável recolhe os dados da pessoa q se autenticou
+        /// </summary>
         private readonly UserManager<ApplicationUser> _userManager;
+
         public VideosController(
             ApplicationDbContext context,
             IWebHostEnvironment caminho,
@@ -56,14 +66,12 @@ namespace Watch2Chill.Controllers
             }
 
             var videos = await _context.Videos
-                //.Include(v => v.ListaDeTemporadas)
-                //.Include(v => v.ListaDeUtilizadores)
-                //.ThenInclude(uv => uv.IdUtilizador.UserName == _userManager.GetUserId(User))
-                .Include(v => v.ListaDeUtilizadores)
-                .ThenInclude(uv => uv.IdUtilizador)
-                .FirstOrDefaultAsync(m => m.IdVideo == id);
+                                       .Include(v => v.ListaDeUtilizadores)
+                                       .ThenInclude(uv => uv.IdUtilizador)
+                                       .FirstOrDefaultAsync(m => m.IdVideo == id);
             if (videos == null)
             {
+                // redirecionar para a página de início
                 return RedirectToAction("Index");
             }
             //?????????????????????????????????????????????????????????????????????
@@ -88,27 +96,27 @@ namespace Watch2Chill.Controllers
 
             if (fotoVideo == null)
             {
-                //não ha ficheiro
+                //não há ficheiro
                 ModelState.AddModelError("", "Adicione por favor a capa do video");
                 ViewData["IdVideo"] = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome", videos.IdVideo);
                 return View(videos);
             }
             else
             {
-                //ha ficheiro mas sera valido
+                //há ficheiro mas será válido
                 if (fotoVideo.ContentType == "image/jpeg" || fotoVideo.ContentType == "image/png")
                 {
 
                     // definir o novo nome da fotografia     
                     Guid g;
                     g = Guid.NewGuid();
-                    nomeImagem = videos.IdVideo + "_" + g.ToString(); // tb, poderia ser usado a formatação da data atual
+                    nomeImagem = videos.IdVideo + "_" + g.ToString(); // também poderia ser usada a formatação da data atual
                                                                   // determinar a extensão do nome da imagem
                     string extensao = Path.GetExtension(fotoVideo.FileName).ToLower();
-                    // agora, consigo ter o nome final do ficheiro
+                    // nome final do ficheiro
                     nomeImagem = nomeImagem + extensao;
 
-                    // associar este ficheiro aos dados da Fotografia do cão
+                    // associar este ficheiro aos dados da Fotografia do video
                     videos.Foto = nomeImagem;
 
                     // localização do armazenamento da imagem
@@ -128,7 +136,7 @@ namespace Watch2Chill.Controllers
             {
                 try
                 {
-                    //adicionar dados do novo video
+                    //adicionar dados do novo vídeo
                     _context.Add(videos);
                     //
                     await _context.SaveChangesAsync();
@@ -161,14 +169,7 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-            //???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-            //problema com guardar id da foto
-
-            // guardar o ID do objeto enviado para o browser
-            // através de uma variável de sessão
-            //HttpContext.Session.SetInt32("NumFotoEmEdicao", videos.IdVideo);
-            //SessionExtensions["NumFotoEmEdicao"] = videos.Foto;
-            //HttpContext.Session.SetString("NumFotoEmEdicao", videos.Foto);
+           
 
             return View(videos);
         }
@@ -184,23 +185,7 @@ namespace Watch2Chill.Controllers
             {
                 return NotFound();
             }
-            /*
-            // recuperar o ID do objeto enviado para o browser
-            var numIdFoto = HttpContext.Session.GetInt32("NumFotoEmEdicao");
-            //var Foto = HttpContext.Session.GetString("NumFotoEmEdicao");
-
-            // e compará-lo com o ID recebido
-            // se forem iguais, continuamos
-            // se forem diferentes, não fazemos a alteração
-
-            if (numIdFoto == null || numIdFoto != videos.IdVideo)
-            {
-                // se entro aqui, é pq houve problemas
-
-                // redirecionar para a página de início
-                return RedirectToAction("Index");
-            }*/
-
+            
             if (ModelState.IsValid)
             {
                 try

@@ -12,11 +12,12 @@ namespace Watch2Chill.Models
         [Key]
         public int Id { get; set; }
 
-
+        //Chave Forasteira que representa o Id do Utilizador
         [ForeignKey(nameof(IdUtilizador))]
         public int IdUtilizadorFK { get; set; }
         public Utilizadores IdUtilizador { get; set; }
 
+        //Chave Forasteira que representa o Id do Vídeo
         [ForeignKey(nameof(IdVideo))]
         public int IdVideoFK { get; set; }
         public Videos IdVideo { get; set; }

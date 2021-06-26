@@ -14,8 +14,14 @@ namespace Watch2Chill.Controllers
     [Authorize]
     public class TemporadasController : Controller
     {
+        /// <summary>
+        /// referência à base de dados
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// objeto que sabe interagir com os dados do utilizador que se autêntica
+        /// </summary>
         public TemporadasController(ApplicationDbContext context)
         {
             _context = context;
@@ -26,8 +32,8 @@ namespace Watch2Chill.Controllers
         {
             //criação de uma variavel que vai conter um conjunto d dados vindos da base de dados
             var temporadas = _context.Temporadas
-                .Include(t => t.ListaDeEpisodios)
-                .Include(t => t.Id);
+                                     .Include(t => t.ListaDeEpisodios)
+                                     .Include(t => t.Video);
                 //.ThenInclude(v => v.Nome)
 
             //??????????????????????????????????????????????????????????????????????????????????????????????????????????????
@@ -59,7 +65,7 @@ namespace Watch2Chill.Controllers
         // GET: Temporadas/Create
         public IActionResult Create()
         {
-            //geração da lista de valores disponiveis na dropdown
+            //geração da lista de valores disponíveis na dropdown
             //o viewData transporta dados a serem associados ao atributo idVideosFK
             //o selectList é um tipo de dados especial que serve para armazenar a lista de opções de um objeto do tipo
             //select do html

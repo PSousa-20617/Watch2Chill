@@ -13,14 +13,14 @@ namespace Watch2Chill.Models
             ListaDeVideos = new HashSet<UtilizadoresVideos>();
         }
         /// <summary>
-        /// Atributo único para cada utilizador. Este atributo identifica um dado utilizador com um Id específico
+        /// Atributo único para cada utilizador. Este atributo identifica um dado utilizador com um Id específico.
         /// </summary>
         [Key]
         public int Id { get; set; }
 
 
         /// <summary>
-        /// Atributo nome do utilizador. Este atributo é de preenchimento obrigatório
+        /// Atributo nome do utilizador. Este atributo é de preenchimento obrigatório.
         /// </summary>
 
         [Required(ErrorMessage = "O Nome é de preenchimento obrigatório")]
@@ -28,7 +28,7 @@ namespace Watch2Chill.Models
 
 
         /// <summary>
-        /// Identifica o email do utilizador. Este campo é de preenchimento obrigatório e que tem de respeitar um conjunto de regras de validação
+        /// Identifica o email do utilizador. Este campo é de preenchimento obrigatório 
         /// </summary>
         [Required(ErrorMessage = "O Email de preenchimento obrigatório")]
         [StringLength(150, ErrorMessage = "O {0} não pode ter mais de {1} caracteres.")]
@@ -55,7 +55,7 @@ namespace Watch2Chill.Models
         public DateTime DataNascimento { get; set; }
 
         /// <summary>
-        /// 
+        /// Atributo que identifica o UserName do Utilizador
         /// </summary>
         public string UserName { get; set; }
 

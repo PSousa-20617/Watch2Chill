@@ -30,6 +30,13 @@ namespace Watch2Chill.Data
 
             // insert DB seed
 
+            // dados para definição dos roles
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole { Id="a", Name="Admninistrador", NormalizedName="ADMINISTRADOR"},
+                new IdentityRole { Id="u", Name="Utilizador", NormalizedName="UTILIZADOR"}
+                );
+
+            //dados para testes durante o desenvolvimento
             modelBuilder.Entity<Utilizadores>().HasData(
                new Utilizadores { Id = 1, Nome = "Fernando Fernao", Email = "admin@admin.com", Morada = "Rua do Lago", Sexo = "M", DataNascimento = new DateTime(13 / 05 / 1990) },
                new Utilizadores { Id = 2, Nome = "Rodrigo Rodrigues", Email = "b@b.b", Morada = "Rua da Estrela", Sexo = "M", DataNascimento = new DateTime(09 / 02 / 1984) },

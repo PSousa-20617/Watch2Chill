@@ -37,7 +37,9 @@ namespace Watch2Chill.Models
         [StringLength(60, ErrorMessage = "O {0} não pode ter mais de {1} caracteres.")]
         public string Nome { get; set; }
 
-        
+        /// <summary>
+        /// Apresenta o Trailer do respetivo vídeo
+        /// </summary>
         public string Trailer { get; set; }
 
 
@@ -88,7 +90,7 @@ namespace Watch2Chill.Models
         /// <summary>
         /// Número de temporadas. Se o valor deste atributo for 0, então trata-se de um Filme, caso contrário, trata-se de uma série
         /// </summary>
-        [Display(Name = "Numero de Temporadas")]
+        [Display(Name = "Número de Temporadas")]
         public int NTemporadas { get; set; }
 
 
