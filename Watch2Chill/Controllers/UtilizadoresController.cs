@@ -77,6 +77,12 @@ namespace Watch2Chill.Controllers
         //    return View(utilizadores);
         //}
 
+        /// <summary>
+        /// Metodo para apresentar os dados dos Utilizadores a autorizar
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(Roles = "")]
         public async Task<IActionResult> ListaUtilizadoresPorAutorizar()
         {
             // quais os utilizadores ainda não autorizados a aceder ao sistema
@@ -84,12 +90,49 @@ namespace Watch2Chill.Controllers
             var listaDeUtilizadores = _userManager.Users.Where(u => u.LockoutEnd > DateTime.Now);
             // lista com os dados do Utilizador
             var listaUtil = _context.Utilizadores
-                                    .Where(u => listaDeUtilizadores.Select(u => u.Id)
-                                                                  .Contains(u.UserName));
+                                    .Where(ut => listaDeUtilizadores.Select(u => u.Id)
+                                                                  .Contains(ut.UserName));
 
             // Enviar os dados para a view
             return View(await listaUtil.ToListAsync());
         }
+
+        /// <summary>
+        /// metodo que recebe os dados do utilizador a autorizar
+        /// </summary>
+        /// <param name="utilizadores">lista desses utilizadores</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> ListaUtilizadoresPorAutorizar(string[] utilizadores)
+        {
+            // Será que algum utilizador foi selecionado?
+            if(utilizadores.Count() != 0)
+            {
+                // há users selecionados
+                //para cada um, vamos desbloqueá-los
+                foreach(string u in utilizadores)
+                {
+                    try { 
+                    //procurar o 'utilizador' na tabela dos Users
+                    var user = await _userManager.FindByIdAsync(u);
+                    // desbloquear o utilizador
+                    await _userManager.SetLockoutEndDateAsync(user, DateTime.Now.AddDays(-1));
+                    //como não se pediu ao User para validar o seu email
+                    // é preciso aqui validar esse email
+                    string codigo = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    await _userManager.ConfirmEmailAsync(user, codigo);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
         // GET: Utilizadores/Edit/5
         public async Task<IActionResult> Edit(int? id)
