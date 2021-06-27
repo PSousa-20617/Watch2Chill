@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Watch2Chill.Data;
 
-namespace Watch2Chill.Data.Migrations
+namespace Watch2Chill.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210625174943_user2")]
-    partial class user2
+    [Migration("20210627163639_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,12 +81,10 @@ namespace Watch2Chill.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -98,12 +96,10 @@ namespace Watch2Chill.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -121,20 +117,45 @@ namespace Watch2Chill.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                    b.ToTable("IdentityUser");
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
+                    b.HasData(
+                        new
+                        {
+                            Id = "3d934ae8-b06a-40af-9037-ab0c50f1ead0",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "976c1385-bc6f-42c1-9735-92ce8711f807",
+                            Email = "admin1@admin1.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN1@ADMIN1.COM",
+                            NormalizedUserName = "ADMIN1@ADMIN1.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH6eG5iK1a2UIjLUrA+orXpHMC5Syj0a0EGgnOF/F+mKLSesM9jFG6wpcV1DV0usKw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3QUQ7ASRHRCZTI5BJ7UDYWBFAI6LY55C",
+                            TwoFactorEnabled = false,
+                            UserName = "admin1@admin1.com"
+                        },
+                        new
+                        {
+                            Id = "9e2e24bf-9156-4caa-9f03-af7e1602d545",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0b123ea8-0041-42a7-8a01-d739e6d7b358",
+                            Email = "utilizador@utilizador.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "UTILIZADOR@UTILIZADOR.COM",
+                            NormalizedUserName = "UTILIZADOR@UTILIZADOR.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHEg7zCXQx/GezAiFnfJhQQtcOOdAWbAtslegNIpzENjJ6RtvTMWwwFcSBQyoDcXgw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "Q7F6RPLAHL32WWX4DUI6JGCV5LLKX3XV",
+                            TwoFactorEnabled = false,
+                            UserName = "utilizador@utilizador.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -219,6 +240,74 @@ namespace Watch2Chill.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Watch2Chill.Data.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataRegisto")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.Episodios", b =>
@@ -322,9 +411,6 @@ namespace Watch2Chill.Data.Migrations
                     b.Property<string>("Data")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("IdVideo")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdVideosFK")
                         .HasColumnType("int");
 
@@ -336,7 +422,7 @@ namespace Watch2Chill.Data.Migrations
 
                     b.HasKey("IdSerie");
 
-                    b.HasIndex("IdVideo");
+                    b.HasIndex("IdVideosFK");
 
                     b.ToTable("Temporadas");
 
@@ -344,6 +430,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 1,
+                            Data = "",
                             IdVideosFK = 1,
                             NumEps = 1,
                             NumTemps = 0
@@ -351,6 +438,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 2,
+                            Data = "",
                             IdVideosFK = 2,
                             NumEps = 1,
                             NumTemps = 0
@@ -358,6 +446,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 3,
+                            Data = "",
                             IdVideosFK = 3,
                             NumEps = 1,
                             NumTemps = 0
@@ -365,6 +454,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 4,
+                            Data = "",
                             IdVideosFK = 4,
                             NumEps = 1,
                             NumTemps = 0
@@ -372,6 +462,7 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 5,
+                            Data = "",
                             IdVideosFK = 5,
                             NumEps = 1,
                             NumTemps = 0
@@ -447,6 +538,9 @@ namespace Watch2Chill.Data.Migrations
                     b.Property<string>("Sexo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
@@ -459,46 +553,23 @@ namespace Watch2Chill.Data.Migrations
                         {
                             Id = 1,
                             DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@admin.com",
-                            Morada = "Rua do Lago",
-                            Nome = "Fernando Fernao",
-                            Sexo = "M"
+                            Email = "admin1@admin1.com",
+                            Morada = "Rua da Lua",
+                            Nome = "Administrador",
+                            Sexo = "M",
+                            UserId = "3d934ae8-b06a-40af-9037-ab0c50f1ead0",
+                            UserName = "3d934ae8-b06a-40af-9037-ab0c50f1ead0"
                         },
                         new
                         {
                             Id = 2,
                             DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "b@b.b",
-                            Morada = "Rua da Estrela",
-                            Nome = "Rodrigo Rodrigues",
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "c@c.c",
+                            Email = "utilizador@utilizador.com",
                             Morada = "Rua da Lua",
-                            Nome = "Gonçalo Gonçalves",
-                            Sexo = "M"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "d@d.d",
-                            Morada = "Rua do Sol",
-                            Nome = "Maria Silva",
-                            Sexo = "F"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "e@e.e",
-                            Morada = "Rua da Ribeira",
-                            Nome = "Bernardo Alentejo",
-                            Sexo = "M"
+                            Nome = "Utilizador",
+                            Sexo = "M",
+                            UserId = "9e2e24bf-9156-4caa-9f03-af7e1602d545",
+                            UserName = "9e2e24bf-9156-4caa-9f03-af7e1602d545"
                         });
                 });
 
@@ -527,20 +598,14 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             Id = 1,
-                            IdUtilizadorFK = 2,
+                            IdUtilizadorFK = 1,
                             IdVideoFK = 1
                         },
                         new
                         {
                             Id = 2,
-                            IdUtilizadorFK = 3,
+                            IdUtilizadorFK = 2,
                             IdVideoFK = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            IdUtilizadorFK = 4,
-                            IdVideoFK = 3
                         });
                 });
 
@@ -725,7 +790,7 @@ namespace Watch2Chill.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Watch2Chill.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -734,7 +799,7 @@ namespace Watch2Chill.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Watch2Chill.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -749,7 +814,7 @@ namespace Watch2Chill.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Watch2Chill.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -758,7 +823,7 @@ namespace Watch2Chill.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Watch2Chill.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -776,11 +841,13 @@ namespace Watch2Chill.Data.Migrations
 
             modelBuilder.Entity("Watch2Chill.Models.Temporadas", b =>
                 {
-                    b.HasOne("Watch2Chill.Models.Videos", "Id")
+                    b.HasOne("Watch2Chill.Models.Videos", "Video")
                         .WithMany("ListaDeTemporadas")
-                        .HasForeignKey("IdVideo");
+                        .HasForeignKey("IdVideosFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Id");
+                    b.Navigation("Video");
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.UtilizadoresVideos", b =>

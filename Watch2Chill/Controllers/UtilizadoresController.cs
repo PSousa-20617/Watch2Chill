@@ -82,7 +82,15 @@ namespace Watch2Chill.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "")]
+        [Authorize(Roles = "Admninistrador")]
+        /*
+         [Authorize(Roles = "Admninistrador")]  -->  só permite que pessoas com esta permissão entrem
+
+         [Authorize(Roles = "Admninistrador,Cliente")]  --> permite acesso a pessoas com uma das duas roles
+
+         [Authorize(Roles = "Admninistrador")]     -->
+         [Authorize(Roles = "Cliente")]    -->  Neste caso, a pessoa tem de pertencer aos dois roles
+        */
         public async Task<IActionResult> ListaUtilizadoresPorAutorizar()
         {
             // quais os utilizadores ainda não autorizados a aceder ao sistema

@@ -59,6 +59,11 @@ namespace Watch2Chill.Models
         /// </summary>
         public string UserName { get; set; }
 
+        /// <summary>
+        /// Referência ao Utilizador que se autentica
+        /// </summary>
+        public string UserId { get; set; }
+
         public ICollection<UtilizadoresVideos> ListaDeVideos { get; set; }
     }
 }
