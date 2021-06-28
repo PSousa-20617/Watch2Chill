@@ -10,8 +10,8 @@ using Watch2Chill.Data;
 namespace Watch2Chill.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210627163639_1")]
-    partial class _1
+    [Migration("20210628171833_CriacaoDB")]
+    partial class CriacaoDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,92 +70,6 @@ namespace Watch2Chill.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3d934ae8-b06a-40af-9037-ab0c50f1ead0",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "976c1385-bc6f-42c1-9735-92ce8711f807",
-                            Email = "admin1@admin1.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN1@ADMIN1.COM",
-                            NormalizedUserName = "ADMIN1@ADMIN1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEH6eG5iK1a2UIjLUrA+orXpHMC5Syj0a0EGgnOF/F+mKLSesM9jFG6wpcV1DV0usKw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "3QUQ7ASRHRCZTI5BJ7UDYWBFAI6LY55C",
-                            TwoFactorEnabled = false,
-                            UserName = "admin1@admin1.com"
-                        },
-                        new
-                        {
-                            Id = "9e2e24bf-9156-4caa-9f03-af7e1602d545",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "0b123ea8-0041-42a7-8a01-d739e6d7b358",
-                            Email = "utilizador@utilizador.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "UTILIZADOR@UTILIZADOR.COM",
-                            NormalizedUserName = "UTILIZADOR@UTILIZADOR.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHEg7zCXQx/GezAiFnfJhQQtcOOdAWbAtslegNIpzENjJ6RtvTMWwwFcSBQyoDcXgw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "Q7F6RPLAHL32WWX4DUI6JGCV5LLKX3XV",
-                            TwoFactorEnabled = false,
-                            UserName = "utilizador@utilizador.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -337,68 +251,6 @@ namespace Watch2Chill.Migrations
                     b.HasIndex("Id_serieIdSerie");
 
                     b.ToTable("Episodios");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Id_serieFK = 0,
-                            Nome = "The Godfather"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Id_serieFK = 0,
-                            Nome = "The dark Knight"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Id_serieFK = 0,
-                            Nome = "The Lord of the Rings"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Id_serieFK = 0,
-                            Nome = "Star Wars: Episode I"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Id_serieFK = 0,
-                            Nome = "Harry Potter"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Id_serieFK = 1,
-                            Nome = "Pilot"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Id_serieFK = 1,
-                            Nome = "Winter Is Coming"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Id_serieFK = 1,
-                            Nome = "Pilot"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Id_serieFK = 1,
-                            Nome = "The Matter Transfer Array"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Id_serieFK = 1,
-                            Nome = "Chapter One"
-                        });
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.Temporadas", b =>
@@ -425,88 +277,6 @@ namespace Watch2Chill.Migrations
                     b.HasIndex("IdVideosFK");
 
                     b.ToTable("Temporadas");
-
-                    b.HasData(
-                        new
-                        {
-                            IdSerie = 1,
-                            Data = "",
-                            IdVideosFK = 1,
-                            NumEps = 1,
-                            NumTemps = 0
-                        },
-                        new
-                        {
-                            IdSerie = 2,
-                            Data = "",
-                            IdVideosFK = 2,
-                            NumEps = 1,
-                            NumTemps = 0
-                        },
-                        new
-                        {
-                            IdSerie = 3,
-                            Data = "",
-                            IdVideosFK = 3,
-                            NumEps = 1,
-                            NumTemps = 0
-                        },
-                        new
-                        {
-                            IdSerie = 4,
-                            Data = "",
-                            IdVideosFK = 4,
-                            NumEps = 1,
-                            NumTemps = 0
-                        },
-                        new
-                        {
-                            IdSerie = 5,
-                            Data = "",
-                            IdVideosFK = 5,
-                            NumEps = 1,
-                            NumTemps = 0
-                        },
-                        new
-                        {
-                            IdSerie = 6,
-                            Data = "2015",
-                            IdVideosFK = 6,
-                            NumEps = 62,
-                            NumTemps = 5
-                        },
-                        new
-                        {
-                            IdSerie = 7,
-                            Data = "2019",
-                            IdVideosFK = 7,
-                            NumEps = 73,
-                            NumTemps = 3
-                        },
-                        new
-                        {
-                            IdSerie = 8,
-                            Data = "Ainda a decorrer",
-                            IdVideosFK = 8,
-                            NumEps = 41,
-                            NumTemps = 4
-                        },
-                        new
-                        {
-                            IdSerie = 9,
-                            Data = "Ainda a decorrer",
-                            IdVideosFK = 9,
-                            NumEps = 16,
-                            NumTemps = 2
-                        },
-                        new
-                        {
-                            IdSerie = 10,
-                            Data = "Ainda a decorrer",
-                            IdVideosFK = 10,
-                            NumEps = 30,
-                            NumTemps = 3
-                        });
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.Utilizadores", b =>
@@ -547,30 +317,6 @@ namespace Watch2Chill.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Utilizadores");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin1@admin1.com",
-                            Morada = "Rua da Lua",
-                            Nome = "Administrador",
-                            Sexo = "M",
-                            UserId = "3d934ae8-b06a-40af-9037-ab0c50f1ead0",
-                            UserName = "3d934ae8-b06a-40af-9037-ab0c50f1ead0"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "utilizador@utilizador.com",
-                            Morada = "Rua da Lua",
-                            Nome = "Utilizador",
-                            Sexo = "M",
-                            UserId = "9e2e24bf-9156-4caa-9f03-af7e1602d545",
-                            UserName = "9e2e24bf-9156-4caa-9f03-af7e1602d545"
-                        });
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.UtilizadoresVideos", b =>
@@ -593,20 +339,6 @@ namespace Watch2Chill.Migrations
                     b.HasIndex("IdVideoFK");
 
                     b.ToTable("UtilizadoresVideos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IdUtilizadorFK = 1,
-                            IdVideoFK = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IdUtilizadorFK = 2,
-                            IdVideoFK = 2
-                        });
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.Videos", b =>
@@ -655,128 +387,6 @@ namespace Watch2Chill.Migrations
                     b.HasKey("IdVideo");
 
                     b.ToTable("Videos");
-
-                    b.HasData(
-                        new
-                        {
-                            IdVideo = 1,
-                            Ano = 1972,
-                            Elenco = "Al Pacino, Marlon Brando, James Caan, Richard S. Castellano",
-                            Foto = "TheGodfather.jpg",
-                            Genero = "Crime, Drama",
-                            Idioma = "Inglês",
-                            NTemporadas = 0,
-                            Nome = "The Godfather",
-                            Realizador = "Francis Ford Coppola"
-                        },
-                        new
-                        {
-                            IdVideo = 2,
-                            Ano = 2008,
-                            Elenco = "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
-                            Foto = "TheDarkKnight.jpg",
-                            Genero = "Crime, Drama, Ação",
-                            Idioma = "Inglês",
-                            NTemporadas = 0,
-                            Nome = "The dark Knight",
-                            Realizador = "Christopher Nolan"
-                        },
-                        new
-                        {
-                            IdVideo = 3,
-                            Ano = 2001,
-                            Elenco = "Alan Howard, Noel Appleby, Sean Astin, Sala Baker",
-                            Foto = "TheLordOfTheRings.jpg",
-                            Genero = "Aventura, Fantasia, Drama",
-                            Idioma = "Inglês",
-                            NTemporadas = 0,
-                            Nome = "The Lord of the Rings",
-                            Realizador = "Peter Jackson"
-                        },
-                        new
-                        {
-                            IdVideo = 4,
-                            Ano = 1977,
-                            Elenco = "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing",
-                            Foto = "StarWars.jpg",
-                            Genero = "Aventura, Ação, Fantasia",
-                            Idioma = "Inglês",
-                            NTemporadas = 0,
-                            Nome = "Star Wars: Episode I",
-                            Realizador = "George Lucas"
-                        },
-                        new
-                        {
-                            IdVideo = 5,
-                            Ano = 2001,
-                            Elenco = "Daniel Radcliffe, Rupert Grint, Richard Harris",
-                            Foto = "HarryPotter.jpg",
-                            Genero = "Fantasia, Aventura, Família",
-                            Idioma = "Inglês",
-                            NTemporadas = 0,
-                            Nome = "Harry Potter",
-                            Realizador = "Chris Columbus"
-                        },
-                        new
-                        {
-                            IdVideo = 6,
-                            Ano = 2008,
-                            Elenco = "Bryan Cranston, Anna Gunn, Aaron Paul, Dean Norris",
-                            Foto = "BreakingBad.jpg",
-                            Genero = "Drama, Crime, Thriller",
-                            Idioma = "Inglês",
-                            NTemporadas = 5,
-                            Nome = "Breaking Bad",
-                            Realizador = "Vince Gilligan"
-                        },
-                        new
-                        {
-                            IdVideo = 7,
-                            Ano = 2011,
-                            Elenco = " Emilia Clarke, Peter Dinklage, Lena Headey, Peter Dinklage, Kit Harington",
-                            Foto = "GameOfThrones.jpg",
-                            Genero = "Aventura, Drama, Fantasia",
-                            Idioma = "Inglês",
-                            NTemporadas = 8,
-                            Nome = "Game of Thrones",
-                            Realizador = "D.B. Weiss, David Benioff"
-                        },
-                        new
-                        {
-                            IdVideo = 8,
-                            Ano = 2013,
-                            Elenco = "Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke",
-                            Foto = "RickMorty.jpg",
-                            Genero = "Animação, Aventura, Comédia",
-                            Idioma = "Inglês",
-                            NTemporadas = 4,
-                            Nome = "Rick and Morty",
-                            Realizador = "Dan Harmon, Justin Roiland"
-                        },
-                        new
-                        {
-                            IdVideo = 9,
-                            Ano = 2020,
-                            Elenco = "Justin Roiland, Sean Giambrone, Thomas Middleditch",
-                            Foto = "solarOpposites.jpg",
-                            Genero = "Animação, Faroeste, Ficção Científica",
-                            Idioma = "Inglês",
-                            NTemporadas = 2,
-                            Nome = "Solar Opposites",
-                            Realizador = "Justin Roiland, Mike McMahan"
-                        },
-                        new
-                        {
-                            IdVideo = 10,
-                            Ano = 2018,
-                            Elenco = "Olan Rogers, Fred Armisen, David Tennant",
-                            Foto = "FinalSpace.jpg",
-                            Genero = "Animação, Aventura, Comédia",
-                            Idioma = "Inglês",
-                            NTemporadas = 3,
-                            Nome = "Final Space",
-                            Realizador = "Olan Rogers"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

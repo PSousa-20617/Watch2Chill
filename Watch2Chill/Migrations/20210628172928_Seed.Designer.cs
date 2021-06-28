@@ -10,8 +10,8 @@ using Watch2Chill.Data;
 namespace Watch2Chill.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210627164251_2")]
-    partial class _2
+    [Migration("20210628172928_Seed")]
+    partial class Seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,14 +51,14 @@ namespace Watch2Chill.Migrations
                         new
                         {
                             Id = "a",
-                            ConcurrencyStamp = "76f4f4e7-7d5a-4e51-97fe-cf56d7c3cb21",
+                            ConcurrencyStamp = "d82f9b21-64e6-400b-8b28-7c06f3440022",
                             Name = "Admninistrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
                             Id = "u",
-                            ConcurrencyStamp = "f8ddbb1a-5e3d-4ae4-9a36-9df9093d94a2",
+                            ConcurrencyStamp = "d235cc7b-4f77-4f05-b139-db276fa5fa65",
                             Name = "Utilizador",
                             NormalizedName = "UTILIZADOR"
                         });
@@ -88,92 +88,6 @@ namespace Watch2Chill.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3d934ae8-b06a-40af-9037-ab0c50f1ead0",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "976c1385-bc6f-42c1-9735-92ce8711f807",
-                            Email = "admin1@admin1.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN1@ADMIN1.COM",
-                            NormalizedUserName = "ADMIN1@ADMIN1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEH6eG5iK1a2UIjLUrA+orXpHMC5Syj0a0EGgnOF/F+mKLSesM9jFG6wpcV1DV0usKw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "3QUQ7ASRHRCZTI5BJ7UDYWBFAI6LY55C",
-                            TwoFactorEnabled = false,
-                            UserName = "admin1@admin1.com"
-                        },
-                        new
-                        {
-                            Id = "9e2e24bf-9156-4caa-9f03-af7e1602d545",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "0b123ea8-0041-42a7-8a01-d739e6d7b358",
-                            Email = "utilizador@utilizador.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "UTILIZADOR@UTILIZADOR.COM",
-                            NormalizedUserName = "UTILIZADOR@UTILIZADOR.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHEg7zCXQx/GezAiFnfJhQQtcOOdAWbAtslegNIpzENjJ6RtvTMWwwFcSBQyoDcXgw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "Q7F6RPLAHL32WWX4DUI6JGCV5LLKX3XV",
-                            TwoFactorEnabled = false,
-                            UserName = "utilizador@utilizador.com"
-                        });
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -196,22 +110,6 @@ namespace Watch2Chill.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ClaimType = "Nome",
-                            ClaimValue = "Administrador Administrador",
-                            UserId = "3d934ae8-b06a-40af-9037-ab0c50f1ead0"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ClaimType = "Nome",
-                            ClaimValue = "Utilizador Utilizador",
-                            UserId = "9e2e24bf-9156-4caa-9f03-af7e1602d545"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -251,18 +149,6 @@ namespace Watch2Chill.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "3d934ae8-b06a-40af-9037-ab0c50f1ead0",
-                            RoleId = "a"
-                        },
-                        new
-                        {
-                            UserId = "9e2e24bf-9156-4caa-9f03-af7e1602d545",
-                            RoleId = "u"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

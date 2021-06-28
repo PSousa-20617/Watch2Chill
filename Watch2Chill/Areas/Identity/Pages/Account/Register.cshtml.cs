@@ -152,7 +152,7 @@ namespace Watch2Chill.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     //se se desejar associar o utilizador recém criado ao role 'Utilizador'
-                    await _userManager.AddToRoleAsync(user, "Utilizador");
+                    await _userManager.AddToRoleAsync(user, "Administrador");
 
                     //*****************************************************************
                     //vamos proceder à operação de guardar os dados do Utilizador
