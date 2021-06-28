@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Watch2Chill.Data;
 
 namespace Watch2Chill.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210628155705_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,14 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             Id = "a",
-                            ConcurrencyStamp = "a5b48c89-87d2-4abc-9410-d35d174ee496",
+                            ConcurrencyStamp = "970dc446-3ccc-417c-a44e-6b11e910b7c6",
                             Name = "Admninistrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
                             Id = "u",
-                            ConcurrencyStamp = "b6435ec1-6f90-4649-9518-b7a28db37195",
+                            ConcurrencyStamp = "5e52f080-0936-4bc0-ac1f-7552ea683527",
                             Name = "Utilizador",
                             NormalizedName = "UTILIZADOR"
                         });
@@ -358,7 +360,6 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 1,
-                            Data = "",
                             IdVideosFK = 1,
                             NumEps = 1,
                             NumTemps = 0
@@ -366,7 +367,6 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 2,
-                            Data = "",
                             IdVideosFK = 2,
                             NumEps = 1,
                             NumTemps = 0
@@ -374,7 +374,6 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 3,
-                            Data = "",
                             IdVideosFK = 3,
                             NumEps = 1,
                             NumTemps = 0
@@ -382,7 +381,6 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 4,
-                            Data = "",
                             IdVideosFK = 4,
                             NumEps = 1,
                             NumTemps = 0
@@ -390,7 +388,6 @@ namespace Watch2Chill.Data.Migrations
                         new
                         {
                             IdSerie = 5,
-                            Data = "",
                             IdVideosFK = 5,
                             NumEps = 1,
                             NumTemps = 0

@@ -65,11 +65,11 @@ namespace Watch2Chill.Data
             );
 
             modelBuilder.Entity<Temporadas>().HasData(
-               new Temporadas { IdSerie = 1, NumTemps = 0, NumEps = 1, IdVideosFK = 1 },
-               new Temporadas { IdSerie = 2, NumTemps = 0, NumEps = 1, IdVideosFK = 2 },
-               new Temporadas { IdSerie = 3, NumTemps = 0, NumEps = 1, IdVideosFK = 3 },
-               new Temporadas { IdSerie = 4, NumTemps = 0, NumEps = 1, IdVideosFK = 4 },
-               new Temporadas { IdSerie = 5, NumTemps = 0, NumEps = 1, IdVideosFK = 5 },
+               new Temporadas { IdSerie = 1, NumTemps = 0, NumEps = 1, IdVideosFK = 1, Data = "" },
+               new Temporadas { IdSerie = 2, NumTemps = 0, NumEps = 1, IdVideosFK = 2, Data = "" },
+               new Temporadas { IdSerie = 3, NumTemps = 0, NumEps = 1, IdVideosFK = 3, Data = "" },
+               new Temporadas { IdSerie = 4, NumTemps = 0, NumEps = 1, IdVideosFK = 4, Data = "" },
+               new Temporadas { IdSerie = 5, NumTemps = 0, NumEps = 1, IdVideosFK = 5, Data = "" },
                new Temporadas { IdSerie = 6, NumTemps = 5, NumEps = 62, IdVideosFK = 6, Data = "2015" },
                new Temporadas { IdSerie = 7, NumTemps = 3, NumEps = 73, IdVideosFK = 7, Data = "2019" },
                new Temporadas { IdSerie = 8, NumTemps = 4, NumEps = 41, IdVideosFK = 8, Data = "Ainda a decorrer" },
