@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +12,23 @@ using Watch2Chill.Models;
 
 namespace Watch2Chill.Controllers
 {
+    [Authorize]
     public class UtilizadoresController : Controller
     {
+        /// <summary>
+        /// referência à base de dados
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
-        public UtilizadoresController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        /// <summary>
+        /// objeto que sabe interagir com os dados do utilizador que se autêntica
+        /// </summary>
+        public UtilizadoresController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Utilizadores
@@ -43,29 +55,9 @@ namespace Watch2Chill.Controllers
             return View(utilizadores);
         }
 
-        // GET: Utilizadores/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Utilizadores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Morada,CodPostal,Sexo,DataNascimento")] Utilizadores utilizadores)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(utilizadores);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(utilizadores);
-        }
 
         // GET: Utilizadores/Edit/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +109,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Utilizadores/Delete/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

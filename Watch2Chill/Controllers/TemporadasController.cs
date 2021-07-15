@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +11,17 @@ using Watch2Chill.Models;
 
 namespace Watch2Chill.Controllers
 {
+    [Authorize]
     public class TemporadasController : Controller
     {
+        /// <summary>
+        /// referência à base de dados
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// objeto que sabe interagir com os dados do utilizador que se autêntica
+        /// </summary>
         public TemporadasController(ApplicationDbContext context)
         {
             _context = context;
@@ -22,7 +30,12 @@ namespace Watch2Chill.Controllers
         // GET: Temporadas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Temporadas.ToListAsync());
+            //criação de uma variavel que vai conter um conjunto d dados vindos da base de dados
+            var temporadas = _context.Temporadas
+                                     .Include(t => t.ListaDeEpisodios)
+                                     .Include(t => t.Video);
+
+            return View(await temporadas.ToListAsync());
         }
 
         // GET: Temporadas/Details/5
@@ -44,8 +57,14 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Temporadas/Create
+        [Authorize(Roles = "Admninistrador")]
         public IActionResult Create()
         {
+            //geração da lista de valores disponíveis na dropdown
+            //o viewData transporta dados a serem associados ao atributo idVideosFK
+            //o selectList é um tipo de dados especial que serve para armazenar a lista de opções de um objeto do tipo
+            //select do html
+            ViewData["IdVideosFK"] = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome");
             return View();
         }
 
@@ -54,18 +73,35 @@ namespace Watch2Chill.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdSerie,NumTemps,NumEps,DataFim,IdVideosFK")] Temporadas temporadas)
+        public async Task<IActionResult> Create([Bind("IdSerie,NumTemps,NumEps,Data,IdVideosFK")] Temporadas temporada)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(temporadas);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            if(temporada.IdVideosFK > 0) 
+            { 
+
+                if (ModelState.IsValid)
+                {
+                    try 
+                    { 
+                        _context.Add(temporada);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch(Exception ex)
+                    {
+                        ModelState.AddModelError("", "Ocorreu um erro...");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Por favor, escolha um video");
+                }
             }
-            return View(temporadas);
+            ViewData["IdVideosFK"] = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome", temporada.IdVideosFK);
+            return View(temporada);
         }
 
         // GET: Temporadas/Edit/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +122,7 @@ namespace Watch2Chill.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdSerie,NumTemps,NumEps,DataFim,IdVideosFK")] Temporadas temporadas)
+        public async Task<IActionResult> Edit(int id, [Bind("IdSerie,NumTemps,NumEps,Data,IdVideosFK")] Temporadas temporadas)
         {
             if (id != temporadas.IdSerie)
             {
@@ -117,6 +153,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Temporadas/Delete/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

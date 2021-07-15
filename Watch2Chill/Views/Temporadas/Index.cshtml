@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Watch2Chill.Models.Temporadas>
+@* Esta view esta a processar uma lista de temporadas que lhe foi enviada pelo controller*@
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Temporadas";
 }
 
-<h1>Index</h1>
+<h1>Lista de Temporadas dos Vídeos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Adicionar Nova Temporada</a>
 </p>
 <table class="table">
     <thead>
@@ -19,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.NumEps)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataFim)
+                @Html.DisplayNameFor(model => model.Data)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IdVideosFK)
@@ -31,23 +32,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @* invoca o valor existente no modelo com o conteudo deste atributo*@
                 @Html.DisplayFor(modelItem => item.NumTemps)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumEps)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataFim)
+                @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdVideosFK)
+                @Html.DisplayFor(modelItem => item.Video.Nome)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdSerie">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdSerie">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdSerie">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdSerie">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.IdSerie">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.IdSerie">Eliminar</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>

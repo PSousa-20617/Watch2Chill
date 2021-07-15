@@ -27,9 +27,10 @@ namespace Watch2Chill.Models
 
 
         /// <summary>
-        /// Atributo Chave forasteira, que identifica o Id da temporada na classe Temporadas, para que seja possível relacionar um dado episódio com a sua Temporada correta
+        /// Atributo Chave forasteira, que representa a temporada do episódios
         /// </summary>
         [ForeignKey("Temporada")]
+        [Display(Name = "Temporada")]
         public int Id_serieFK { get; set; }
         public Temporadas Id_serie { get; set; }
     }

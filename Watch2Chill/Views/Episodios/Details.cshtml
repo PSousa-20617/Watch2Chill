@@ -1,0 +1,46 @@
+﻿@model Watch2Chill.Models.Episodios
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Episódios</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Foto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Video)
+        </dt>
+        <dd class="col-sm-10">
+            <video controls="controls" autoplay="autoplay" src="~/Video/@Html.DisplayFor(model => model.Video)" type="video/mp4" width="500">
+                
+                Your browser does not support the video tag.
+            </video>
+            
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id_serieFK)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id_serieFK)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

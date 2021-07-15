@@ -4,75 +4,92 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalhes</h1>
 
 <div>
-    <h4>Videos</h4>
+    <h4>Vídeos</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Trailer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Trailer)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Genero)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Genero)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ano)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ano)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Elenco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Elenco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idioma)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idioma)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Realizador)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Realizador)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Foto)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Foto)
+        <dd class="col-sm-10">
+            <img src="~/Imagens/Videos/@Html.DisplayFor(modelItem => Model.Foto)"
+                 width="50"
+                 alt="Fotografia do video @Html.DisplayFor(modelItem => Model.IdVideo)"
+                 title="@Html.DisplayFor(modelItem => Model.IdVideo)" />
+
+
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Trailer)
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Html.DisplayFor(model => model.Trailer)">Trailer</a>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Genero)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genero)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ano)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ano)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Elenco)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Elenco)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Idioma)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Idioma)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Realizador)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Realizador)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Filme)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Filme)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NTemporadas)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NTemporadas)
         </dd>
+        <dt class="col-sm-2">
+            <a asp-controller="Temporadas" asp-action="Details" asp-route-id="@Model.IdVideo">Temporadas</a>
+        </dt>
+
+
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdVideo">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <form asp-action="Gosto" method="post">
+        <input type="checkbox" value="@Model.IdVideo" name="idDoVideo" />
+        <button class="btnGosto" type="submit" style="background-color: red">Gosto</button>
+        <input type="checkbox" value="false" name="idDoVideo" checked/>
+
+    </form>
+    <a asp-action="Edit" asp-route-id="@Model.IdVideo">Editar</a> |
+    <a asp-action="Index">Voltar</a>
 </div>

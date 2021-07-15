@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Watch2Chill.Models
 {

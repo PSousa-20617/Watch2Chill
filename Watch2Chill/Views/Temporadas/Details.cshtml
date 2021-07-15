@@ -1,42 +1,54 @@
 ﻿@model Watch2Chill.Models.Temporadas
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h1>Details</h1>
+<h1>Detalhes</h1>
 
 <div>
     <h4>Temporadas</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NumTemps)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumTemps)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NumEps)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumEps)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataFim)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Data)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataFim)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Data)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdVideosFK)
+        <dt class="col-sm-2">
+            Lista de Episódios
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdVideosFK)
+        <dd class="col-sm-10">
+
+            @foreach (var episodios in Model.ListaDeEpisodios)
+            { // listar todas as faixas Associadas aos albuns que está em exibição
+                <dl>
+
+                    @episodios.Nome
+
+                </dl>
+            }
         </dd>
+        <dt class="col-sm-2">
+            <a asp-controller="Episodios" asp-action="Details" asp-route-id="@Model.IdSerie">Episódios</a>
+
+        </dt>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdSerie">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.IdSerie">Editar</a> |
+    <a asp-action="Index">Voltar</a>
 </div>
