@@ -75,6 +75,7 @@ namespace Watch2Chill.Controllers
                 // redirecionar para a página de início
                 return RedirectToAction("Index");
             }
+
             return View(videos);
         }
 
