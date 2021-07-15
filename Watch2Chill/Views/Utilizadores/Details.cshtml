@@ -53,13 +53,13 @@
 
             @foreach (var UtilizadoresVideo in Model.ListaDeVideos)
             { // listar todas as faixas Associadas aos albuns que está em exibição
-            <tr>
+            <dl>
 
-                @UtilizadoresVideo.IdVideo.Nome;
-                @UtilizadoresVideo.IdUtilizador.Nome;
+                @UtilizadoresVideo.Video.Nome;
+                @UtilizadoresVideo.Utilizador.Nome;
 
 
-            </tr>
+            </dl>
             }
         </dd>
 

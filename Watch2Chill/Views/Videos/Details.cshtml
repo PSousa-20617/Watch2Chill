@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalhes</h1>
 
 <div>
-    <h4>Videos</h4>
+    <h4>Vídeos</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -32,7 +32,7 @@
             @Html.DisplayNameFor(model => model.Trailer)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Trailer)
+            <a href="@Html.DisplayFor(model => model.Trailer)">Trailer</a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Genero)
@@ -77,20 +77,6 @@
             @Html.DisplayFor(model => model.NTemporadas)
         </dd>
         <dt class="col-sm-2">
-            Utilizadores
-        </dt>
-        <dd class="col-sm-10">
-
-            @foreach (var UtilizadoresVideo in Model.ListaDeUtilizadores)
-            { // listar todas as faixas Associadas aos albuns que está em exibição
-                <tr>
-
-                    @UtilizadoresVideo.IdUtilizador.Nome
-
-                </tr>
-            }
-        </dd>
-        <dt class="col-sm-2">
             <a asp-controller="Temporadas" asp-action="Details" asp-route-id="@Model.IdVideo">Temporadas</a>
         </dt>
 
@@ -98,6 +84,12 @@
     </dl>
 </div>
 <div>
+    <form asp-action="Gosto" method="post">
+        <input type="checkbox" value="@Model.IdVideo" name="idDoVideo" />
+        <button class="btnGosto" type="submit" style="background-color: red">Gosto</button>
+        <input type="checkbox" value="false" name="idDoVideo" checked/>
+
+    </form>
     <a asp-action="Edit" asp-route-id="@Model.IdVideo">Editar</a> |
     <a asp-action="Index">Voltar</a>
 </div>

@@ -49,14 +49,14 @@ namespace Watch2Chill.Migrations
                         new
                         {
                             Id = "a",
-                            ConcurrencyStamp = "d82f9b21-64e6-400b-8b28-7c06f3440022",
+                            ConcurrencyStamp = "f0742145-cf8d-44e7-8235-24a1156582cd",
                             Name = "Admninistrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
                             Id = "u",
-                            ConcurrencyStamp = "d235cc7b-4f77-4f05-b139-db276fa5fa65",
+                            ConcurrencyStamp = "3f591d8d-5682-4e7e-afe1-4956d53e9cfd",
                             Name = "Utilizador",
                             NormalizedName = "UTILIZADOR"
                         });
@@ -251,9 +251,6 @@ namespace Watch2Chill.Migrations
                     b.Property<int>("Id_serieFK")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Id_serieIdSerie")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
@@ -262,7 +259,7 @@ namespace Watch2Chill.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id_serieIdSerie");
+                    b.HasIndex("Id_serieFK");
 
                     b.ToTable("Episodios");
 
@@ -313,7 +310,8 @@ namespace Watch2Chill.Migrations
                         {
                             Id = 8,
                             Id_serieFK = 1,
-                            Nome = "Pilot"
+                            Nome = "Pilot",
+                            Video = "Pilot.mp4"
                         },
                         new
                         {
@@ -595,7 +593,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 0,
                             Nome = "The Godfather",
-                            Realizador = "Francis Ford Coppola"
+                            Realizador = "Francis Ford Coppola",
+                            Trailer = "https://www.youtube.com/watch?v=sY1S34973zA"
                         },
                         new
                         {
@@ -607,7 +606,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 0,
                             Nome = "The dark Knight",
-                            Realizador = "Christopher Nolan"
+                            Realizador = "Christopher Nolan",
+                            Trailer = "https://www.youtube.com/watch?v=EXeTwQWrcwY"
                         },
                         new
                         {
@@ -619,7 +619,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 0,
                             Nome = "The Lord of the Rings",
-                            Realizador = "Peter Jackson"
+                            Realizador = "Peter Jackson",
+                            Trailer = "https://www.youtube.com/watch?v=V75dMMIW2B4"
                         },
                         new
                         {
@@ -631,7 +632,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 0,
                             Nome = "Star Wars: Episode I",
-                            Realizador = "George Lucas"
+                            Realizador = "George Lucas",
+                            Trailer = "https://www.youtube.com/watch?v=bD7bpG-zDJQ"
                         },
                         new
                         {
@@ -643,7 +645,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 0,
                             Nome = "Harry Potter",
-                            Realizador = "Chris Columbus"
+                            Realizador = "Chris Columbus",
+                            Trailer = "https://www.youtube.com/watch?v=VyHV0BRtdxo"
                         },
                         new
                         {
@@ -655,7 +658,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 5,
                             Nome = "Breaking Bad",
-                            Realizador = "Vince Gilligan"
+                            Realizador = "Vince Gilligan",
+                            Trailer = "https://www.youtube.com/watch?v=HhesaQXLuRY"
                         },
                         new
                         {
@@ -667,7 +671,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 8,
                             Nome = "Game of Thrones",
-                            Realizador = "D.B. Weiss, David Benioff"
+                            Realizador = "D.B. Weiss, David Benioff",
+                            Trailer = "https://www.youtube.com/watch?v=gcTkNV5Vg1E"
                         },
                         new
                         {
@@ -679,7 +684,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 4,
                             Nome = "Rick and Morty",
-                            Realizador = "Dan Harmon, Justin Roiland"
+                            Realizador = "Dan Harmon, Justin Roiland",
+                            Trailer = "https://www.youtube.com/watch?v=Uz2m4T_JNIs"
                         },
                         new
                         {
@@ -691,7 +697,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 2,
                             Nome = "Solar Opposites",
-                            Realizador = "Justin Roiland, Mike McMahan"
+                            Realizador = "Justin Roiland, Mike McMahan",
+                            Trailer = "https://www.youtube.com/watch?v=UN7OH4d3CEw"
                         },
                         new
                         {
@@ -703,7 +710,8 @@ namespace Watch2Chill.Migrations
                             Idioma = "Inglês",
                             NTemporadas = 3,
                             Nome = "Final Space",
-                            Realizador = "Olan Rogers"
+                            Realizador = "Olan Rogers",
+                            Trailer = "https://www.youtube.com/watch?v=fkyNpNysdZw"
                         });
                 });
 
@@ -760,11 +768,13 @@ namespace Watch2Chill.Migrations
 
             modelBuilder.Entity("Watch2Chill.Models.Episodios", b =>
                 {
-                    b.HasOne("Watch2Chill.Models.Temporadas", "Id_serie")
+                    b.HasOne("Watch2Chill.Models.Temporadas", "Temporada")
                         .WithMany("ListaDeEpisodios")
-                        .HasForeignKey("Id_serieIdSerie");
+                        .HasForeignKey("Id_serieFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Id_serie");
+                    b.Navigation("Temporada");
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.Temporadas", b =>
@@ -780,21 +790,21 @@ namespace Watch2Chill.Migrations
 
             modelBuilder.Entity("Watch2Chill.Models.UtilizadoresVideos", b =>
                 {
-                    b.HasOne("Watch2Chill.Models.Utilizadores", "IdUtilizador")
+                    b.HasOne("Watch2Chill.Models.Utilizadores", "Utilizador")
                         .WithMany("ListaDeVideos")
                         .HasForeignKey("IdUtilizadorFK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Watch2Chill.Models.Videos", "IdVideo")
+                    b.HasOne("Watch2Chill.Models.Videos", "Video")
                         .WithMany("ListaDeUtilizadores")
                         .HasForeignKey("IdVideoFK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("IdUtilizador");
+                    b.Navigation("Utilizador");
 
-                    b.Navigation("IdVideo");
+                    b.Navigation("Video");
                 });
 
             modelBuilder.Entity("Watch2Chill.Models.Temporadas", b =>

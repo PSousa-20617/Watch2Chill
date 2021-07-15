@@ -60,7 +60,7 @@ namespace Watch2Chill.Models
         public string UserName { get; set; }
 
         /// <summary>
-        /// Referência ao Utilizador que se autentica
+        /// Referência ao Utilizador que se autenticat
         /// </summary>
         public string UserId { get; set; }
 

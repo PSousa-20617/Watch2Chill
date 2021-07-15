@@ -137,8 +137,8 @@ namespace Watch2Chill.Areas.Identity.Pages.Account
                     UserName = Input.Email, //username
                     Email = Input.Email, //e-mail do utilizador
                     EmailConfirmed = false, //o e-mail ´~ao está formálmente confirmado
-                    LockoutEnabled = true, //o utilizador pode ser bloqueado
-                    LockoutEnd = new DateTime(DateTime.Now.Year+10,1,1), // data em que termina o bloqueio, se não for anulado antes
+                    //LockoutEnabled = true, //o utilizador pode ser bloqueado
+                    //LockoutEnd = new DateTime(DateTime.Now.Year+10,1,1), // data em que termina o bloqueio, se não for anulado antes
                     DataRegisto = DateTime.Now // data do registo 
                     
                 };
@@ -151,8 +151,9 @@ namespace Watch2Chill.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+
                     //se se desejar associar o utilizador recém criado ao role 'Utilizador'
-                    await _userManager.AddToRoleAsync(user, "Administrador");
+                    await _userManager.AddToRoleAsync(user, "Utilizador");
 
                     //*****************************************************************
                     //vamos proceder à operação de guardar os dados do Utilizador
@@ -164,7 +165,6 @@ namespace Watch2Chill.Areas.Identity.Pages.Account
                     Input.Utilizador.UserName = user.Id; // adicionar o ID do utilizador, para formar uma 'ponte' (fk) entre
                                                          // os dados da autenticação e os dados do 'negócio'
 
-                    
 
                     //estamos em condições de guardar os dados na BD
                     try
@@ -175,7 +175,7 @@ namespace Watch2Chill.Areas.Identity.Pages.Account
 
                         await _context.SaveChangesAsync();// 'commit' da adição1
                         // Enviar para o utilizador para a página de confirmação da criação de Registo
-                        return RedirectToPage("RegisterConfirmation");
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     catch (Exception){
 

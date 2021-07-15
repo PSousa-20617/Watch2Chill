@@ -46,14 +46,14 @@ namespace Watch2Chill.Controllers
 
 
         // GET: Videos
-        [AllowAnonymous] //anula a necessidade de um utilizador estar autenticado para aceder a este metodo
+        [AllowAnonymous] //anula a necessidade de um utilizador estar autenticado para aceder a este método
         public async Task<IActionResult> Index()
         {
             var videos = _context.Videos
                 .Include(v => v.Foto)
                 .Include(v => v.ListaDeTemporadas)
                 .Include(v => v.ListaDeUtilizadores)
-                .ThenInclude(uv => uv.IdUtilizador.UserName == _userManager.GetUserId(User));
+                .ThenInclude(uv => uv.Utilizador.UserName == _userManager.GetUserId(User));
             return View(await _context.Videos.ToListAsync());
         }
 
@@ -67,18 +67,78 @@ namespace Watch2Chill.Controllers
 
             var videos = await _context.Videos
                                        .Include(v => v.ListaDeUtilizadores)
-                                       .ThenInclude(uv => uv.IdUtilizador)
+                                       .ThenInclude(uv => uv.Utilizador)
                                        .FirstOrDefaultAsync(m => m.IdVideo == id);
             if (videos == null)
             {
                 // redirecionar para a página de início
                 return RedirectToAction("Index");
             }
-            //?????????????????????????????????????????????????????????????????????
             return View(videos);
         }
 
+
+
+
+        // GET: Videos/Gosto/5
+        [HttpPost]
+        public async Task<IActionResult> Gosto(int? idDoVideo)
+        {
+            if (idDoVideo == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // verificar se o filme indicado realmente existe
+            var video = await _context.Videos.FirstOrDefaultAsync(m => m.IdVideo == idDoVideo);
+            if (video == null)
+            {
+                // redirecionar para a página de início
+                return RedirectToAction("Index");
+            }
+
+            // se cheguei aqui, é porque existe filme.
+            // procurar os dados do utilizador autenticado
+            Utilizadores utilizador = await _context.Utilizadores.Where(u => u.UserName == _userManager.GetUserId(User)).FirstOrDefaultAsync();
+
+            // criar objeto com dados que ligam o utilizador e o filme
+            // começar por procurar se o utilizador já 'gostou' do filme
+            var gostouDoFilme = await _context.UtilizadoresVideos.Where(uv => uv.Video == video && uv.Utilizador == utilizador).FirstOrDefaultAsync();
+
+            if (gostouDoFilme != null)
+            {
+                // existe este objeto => o utilizador já gostou do filme,
+                // mas, agora já não gosta
+                _context.Remove(gostouDoFilme);
+            }
+            else
+            {
+                // afinal, sempre gosta do filme...
+                gostouDoFilme = new UtilizadoresVideos
+                {
+                    Video = video,
+                    Utilizador = utilizador
+                };
+                _context.Add(gostouDoFilme);
+            }
+
+            try
+            {
+                // consolidar as alterações na BD
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return RedirectToAction("Details", new { id = idDoVideo });
+        }
+
+
+
         // GET: Videos/Create
+        [Authorize(Roles = "Admninistrador")]
         public IActionResult Create()
         {
             return View();
@@ -111,7 +171,7 @@ namespace Watch2Chill.Controllers
                     Guid g;
                     g = Guid.NewGuid();
                     nomeImagem = videos.IdVideo + "_" + g.ToString(); // também poderia ser usada a formatação da data atual
-                                                                  // determinar a extensão do nome da imagem
+                                                                      // determinar a extensão do nome da imagem
                     string extensao = Path.GetExtension(fotoVideo.FileName).ToLower();
                     // nome final do ficheiro
                     nomeImagem = nomeImagem + extensao;
@@ -156,6 +216,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Videos/Edit/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -169,7 +230,7 @@ namespace Watch2Chill.Controllers
                 return NotFound();
             }
 
-           
+
 
             return View(videos);
         }
@@ -185,7 +246,7 @@ namespace Watch2Chill.Controllers
             {
                 return NotFound();
             }
-            
+
             if (ModelState.IsValid)
             {
                 try
@@ -211,6 +272,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Videos/Delete/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

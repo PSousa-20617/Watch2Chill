@@ -34,12 +34,6 @@ namespace Watch2Chill.Controllers
             var temporadas = _context.Temporadas
                                      .Include(t => t.ListaDeEpisodios)
                                      .Include(t => t.Video);
-                //.ThenInclude(v => v.Nome)
-
-            //??????????????????????????????????????????????????????????????????????????????????????????????????????????????
-            //ViewBag.Id = _context.Videos.OrderBy(v => v.Nome);
-            //ViewBag.IdVideoFK = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome");
-            //ViewData["IdVideoFK"] = new SelectList(_context.Videos.OrderBy(v => v.Nome), "IdVideo", "Nome");
 
             return View(await temporadas.ToListAsync());
         }
@@ -63,6 +57,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Temporadas/Create
+        [Authorize(Roles = "Admninistrador")]
         public IActionResult Create()
         {
             //geração da lista de valores disponíveis na dropdown
@@ -106,6 +101,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Temporadas/Edit/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -157,6 +153,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Temporadas/Delete/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

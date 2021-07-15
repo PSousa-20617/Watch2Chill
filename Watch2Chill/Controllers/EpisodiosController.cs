@@ -52,6 +52,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Episodios/Create
+        [Authorize(Roles = "Admninistrador")]
         public IActionResult Create()
         {
             return View();
@@ -74,6 +75,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Episodios/Edit/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -125,6 +127,7 @@ namespace Watch2Chill.Controllers
         }
 
         // GET: Episodios/Delete/5
+        [Authorize(Roles = "Admninistrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

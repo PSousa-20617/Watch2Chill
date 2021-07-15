@@ -62,16 +62,16 @@ namespace Watch2Chill.Data
             );
 
             modelBuilder.Entity<Videos>().HasData(
-               new Videos { IdVideo = 1, Foto = "TheGodfather.jpg", Nome = "The Godfather", Genero = "Crime, Drama", Ano = 1972, Elenco = "Al Pacino, Marlon Brando, James Caan, Richard S. Castellano", Idioma = "Inglês", Realizador = "Francis Ford Coppola", NTemporadas = 0 },
-               new Videos { IdVideo = 2, Foto = "TheDarkKnight.jpg", Nome = "The dark Knight", Genero = "Crime, Drama, Ação", Ano = 2008, Elenco = "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine", Idioma = "Inglês", Realizador = "Christopher Nolan", NTemporadas = 0 },
-               new Videos { IdVideo = 3, Foto = "TheLordOfTheRings.jpg", Nome = "The Lord of the Rings", Genero = "Aventura, Fantasia, Drama", Ano = 2001, Elenco = "Alan Howard, Noel Appleby, Sean Astin, Sala Baker", Idioma = "Inglês", Realizador = "Peter Jackson", NTemporadas = 0 },
-               new Videos { IdVideo = 4, Foto = "StarWars.jpg", Nome = "Star Wars: Episode I", Genero = "Aventura, Ação, Fantasia", Ano = 1977, Elenco = "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing", Idioma = "Inglês", Realizador = "George Lucas", NTemporadas = 0 },
-               new Videos { IdVideo = 5, Foto = "HarryPotter.jpg", Nome = "Harry Potter", Genero = "Fantasia, Aventura, Família", Ano = 2001, Elenco = "Daniel Radcliffe, Rupert Grint, Richard Harris", Idioma = "Inglês", Realizador = "Chris Columbus", NTemporadas = 0 },
-               new Videos { IdVideo = 6, Foto = "BreakingBad.jpg", Nome = "Breaking Bad", Genero = "Drama, Crime, Thriller", Ano = 2008, Elenco = "Bryan Cranston, Anna Gunn, Aaron Paul, Dean Norris", Idioma = "Inglês", Realizador = "Vince Gilligan", NTemporadas = 5 },
-               new Videos { IdVideo = 7, Foto = "GameOfThrones.jpg", Nome = "Game of Thrones", Genero = "Aventura, Drama, Fantasia", Ano = 2011, Elenco = " Emilia Clarke, Peter Dinklage, Lena Headey, Peter Dinklage, Kit Harington", Idioma = "Inglês", Realizador = "D.B. Weiss, David Benioff", NTemporadas = 8 },
-               new Videos { IdVideo = 8, Foto = "RickMorty.jpg", Nome = "Rick and Morty", Genero = "Animação, Aventura, Comédia", Ano = 2013, Elenco = "Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke", Idioma = "Inglês", Realizador = "Dan Harmon, Justin Roiland", NTemporadas = 4 },
-               new Videos { IdVideo = 9, Foto = "solarOpposites.jpg", Nome = "Solar Opposites", Genero = "Animação, Faroeste, Ficção Científica", Ano = 2020, Elenco = "Justin Roiland, Sean Giambrone, Thomas Middleditch", Idioma = "Inglês", Realizador = "Justin Roiland, Mike McMahan", NTemporadas = 2 },
-               new Videos { IdVideo = 10, Foto = "FinalSpace.jpg", Nome = "Final Space", Genero = "Animação, Aventura, Comédia", Ano = 2018, Elenco = "Olan Rogers, Fred Armisen, David Tennant", Idioma = "Inglês", Realizador = "Olan Rogers", NTemporadas = 3 }
+               new Videos { IdVideo = 1, Foto = "TheGodfather.jpg", Nome = "The Godfather", Genero = "Crime, Drama", Ano = 1972, Elenco = "Al Pacino, Marlon Brando, James Caan, Richard S. Castellano", Idioma = "Inglês", Realizador = "Francis Ford Coppola", NTemporadas = 0, Trailer = "https://www.youtube.com/watch?v=sY1S34973zA" },
+               new Videos { IdVideo = 2, Foto = "TheDarkKnight.jpg", Nome = "The dark Knight", Genero = "Crime, Drama, Ação", Ano = 2008, Elenco = "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine", Idioma = "Inglês", Realizador = "Christopher Nolan", NTemporadas = 0, Trailer = "https://www.youtube.com/watch?v=EXeTwQWrcwY" },
+               new Videos { IdVideo = 3, Foto = "TheLordOfTheRings.jpg", Nome = "The Lord of the Rings", Genero = "Aventura, Fantasia, Drama", Ano = 2001, Elenco = "Alan Howard, Noel Appleby, Sean Astin, Sala Baker", Idioma = "Inglês", Realizador = "Peter Jackson", NTemporadas = 0, Trailer = "https://www.youtube.com/watch?v=V75dMMIW2B4" },
+               new Videos { IdVideo = 4, Foto = "StarWars.jpg", Nome = "Star Wars: Episode I", Genero = "Aventura, Ação, Fantasia", Ano = 1977, Elenco = "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing", Idioma = "Inglês", Realizador = "George Lucas", NTemporadas = 0, Trailer = "https://www.youtube.com/watch?v=bD7bpG-zDJQ" },
+               new Videos { IdVideo = 5, Foto = "HarryPotter.jpg", Nome = "Harry Potter", Genero = "Fantasia, Aventura, Família", Ano = 2001, Elenco = "Daniel Radcliffe, Rupert Grint, Richard Harris", Idioma = "Inglês", Realizador = "Chris Columbus", NTemporadas = 0, Trailer = "https://www.youtube.com/watch?v=VyHV0BRtdxo" },
+               new Videos { IdVideo = 6, Foto = "BreakingBad.jpg", Nome = "Breaking Bad", Genero = "Drama, Crime, Thriller", Ano = 2008, Elenco = "Bryan Cranston, Anna Gunn, Aaron Paul, Dean Norris", Idioma = "Inglês", Realizador = "Vince Gilligan", NTemporadas = 5, Trailer = "https://www.youtube.com/watch?v=HhesaQXLuRY" },
+               new Videos { IdVideo = 7, Foto = "GameOfThrones.jpg", Nome = "Game of Thrones", Genero = "Aventura, Drama, Fantasia", Ano = 2011, Elenco = " Emilia Clarke, Peter Dinklage, Lena Headey, Peter Dinklage, Kit Harington", Idioma = "Inglês", Realizador = "D.B. Weiss, David Benioff", NTemporadas = 8, Trailer = "https://www.youtube.com/watch?v=gcTkNV5Vg1E" },
+               new Videos { IdVideo = 8, Foto = "RickMorty.jpg", Nome = "Rick and Morty", Genero = "Animação, Aventura, Comédia", Ano = 2013, Elenco = "Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke", Idioma = "Inglês", Realizador = "Dan Harmon, Justin Roiland", NTemporadas = 4, Trailer = "https://www.youtube.com/watch?v=Uz2m4T_JNIs" },
+               new Videos { IdVideo = 9, Foto = "solarOpposites.jpg", Nome = "Solar Opposites", Genero = "Animação, Faroeste, Ficção Científica", Ano = 2020, Elenco = "Justin Roiland, Sean Giambrone, Thomas Middleditch", Idioma = "Inglês", Realizador = "Justin Roiland, Mike McMahan", NTemporadas = 2, Trailer = "https://www.youtube.com/watch?v=UN7OH4d3CEw" },
+               new Videos { IdVideo = 10, Foto = "FinalSpace.jpg", Nome = "Final Space", Genero = "Animação, Aventura, Comédia", Ano = 2018, Elenco = "Olan Rogers, Fred Armisen, David Tennant", Idioma = "Inglês", Realizador = "Olan Rogers", NTemporadas = 3, Trailer = "https://www.youtube.com/watch?v=fkyNpNysdZw" }
             );
 
             modelBuilder.Entity<Temporadas>().HasData(
@@ -95,7 +95,7 @@ namespace Watch2Chill.Data
                new Episodios { Id = 5, Nome = "Harry Potter", Id_serieFK = 0 },
                new Episodios { Id = 6, Nome = "Pilot", Id_serieFK = 1 },
                new Episodios { Id = 7, Nome = "Winter Is Coming", Id_serieFK = 1 },
-               new Episodios { Id = 8, Nome = "Pilot", Id_serieFK = 1 },
+               new Episodios { Id = 8, Nome = "Pilot", Id_serieFK = 1, Video = "Pilot.mp4" },
                new Episodios { Id = 9, Nome = "The Matter Transfer Array", Id_serieFK = 1 },
                new Episodios { Id = 10, Nome = "Chapter One", Id_serieFK = 1 }
             );
