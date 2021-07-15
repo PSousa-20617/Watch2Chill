@@ -54,6 +54,7 @@ namespace Watch2Chill.Controllers
                 .Include(v => v.ListaDeTemporadas)
                 .Include(v => v.ListaDeUtilizadores)
                 .ThenInclude(uv => uv.Utilizador.UserName == _userManager.GetUserId(User));
+
             return View(await _context.Videos.ToListAsync());
         }
 
